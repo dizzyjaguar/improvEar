@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Tone from "tone";
-import { chords, chordTypes } from '../data/chords'
+import { chordTypes } from '../data/chords'
 
 
 const Chord = () => {
-  const [currentChord, setCurrentChord] = useState('major')
+  const [currentChordType, setCurrentChordType] = useState('major')
+  const [currentChord, setCurrentChord] = useState(['C4', 'E4', 'G4'])
 
   // synth stuff------------------------------
   const synth = new Tone.PolySynth().toDestination();
   
-  
   const playChord = (chord) => {
     synth.triggerAttackRelease(chord, 1);
   };
-
   //this does work but returns a more complex value than just 'E4' 
   const changeKey = (chord, interval) => {
-    const newChord = chord.map(note => Tone.Frequency(note).transpose(interval))
+    const newChord = chord.map(note => Tone.Frequency(note).transpose(interval).toNote())
     setCurrentChord(newChord)
   };
-
-  console.log(currentChord)
 
 
   const chordNodes = Object.keys(chordTypes).map(chord => {
@@ -32,9 +29,16 @@ const Chord = () => {
     const { value } = target;
     event.persist();
 
-    setCurrentChord(value);
+    setCurrentChordType(value);
+  
   };
 
+  useEffect(() => {
+    setCurrentChord(chordTypes[currentChordType])
+  }, [currentChordType])
+
+  console.log(currentChordType)
+  console.log(currentChord)
 
   return (
     <>
@@ -42,8 +46,8 @@ const Chord = () => {
         {chordNodes}
       </select>
        {/* this doesnt work because the currentChord state is just a reference into the notes of the chord and the change key function returns the actual chord, but in difference reference ie: not 'C4', 'E4' */}
-      {/* <button onClick={() => changeKey(chordTypes[currentChord], 3)} >Change Key</button> */}
-      <button className="note" onClick={() => playChord(chordTypes[currentChord])}>
+      <button onClick={() => changeKey(currentChord, 3)} >Change Key</button>
+      <button className="note" onClick={() => playChord(currentChord)}>
           Playchord
       </button>
     </>
