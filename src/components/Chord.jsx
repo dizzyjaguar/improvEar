@@ -6,7 +6,7 @@ import { chordTypes, keyCenters } from '../data/chords'
 const Chord = () => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
-  const [chordType, setChordType] = useState([0, 4, 8])
+  const [chordType, setChordType] = useState([0, 4, 7])
   const [currentChord, setCurrentChord] = useState()
 
   
