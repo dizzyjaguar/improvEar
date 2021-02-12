@@ -37,8 +37,6 @@ const Chord = () => {
     setCurrentChord(chordTypes[currentChordType])
   }, [currentChordType])
 
-  console.log(currentChordType)
-  console.log(currentChord)
 
   return (
     <>
@@ -47,6 +45,7 @@ const Chord = () => {
       </select>
        {/* this doesnt work because the currentChord state is just a reference into the notes of the chord and the change key function returns the actual chord, but in difference reference ie: not 'C4', 'E4' */}
       <button onClick={() => changeKey(currentChord, 3)} >Change Key</button>
+      <p>{currentChord[0].slice(0, -1)}  {currentChordType}</p>
       <button className="note" onClick={() => playChord(currentChord)}>
           Playchord
       </button>

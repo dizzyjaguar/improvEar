@@ -14,5 +14,6 @@ export const chordTypes = {
 };
 
 export const keyCenter = {
-  C: 0
+  
+  
 }
