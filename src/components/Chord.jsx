@@ -1,52 +1,68 @@
 import React, { useEffect, useState } from 'react';
 import * as Tone from "tone";
-import { chordTypes } from '../data/chords'
+import { chordTypes, keyCenters } from '../data/chords'
 
 
 const Chord = () => {
-  const [currentChordType, setCurrentChordType] = useState('major')
-  const [currentChord, setCurrentChord] = useState(['C4', 'E4', 'G4'])
+  const [keyCenter, setKeyCenter] = useState('C')
+  const [octave, setOctave] = useState(4)
+  const [chordType, setChordType] = useState([0, 4, 8])
+  const [currentChord, setCurrentChord] = useState()
 
-  // synth stuff------------------------------
+  
   const synth = new Tone.PolySynth().toDestination();
   
-  const playChord = (chord) => {
-    synth.triggerAttackRelease(chord, 1);
-  };
-  //this does work but returns a more complex value than just 'E4' 
-  const changeKey = (chord, interval) => {
-    const newChord = chord.map(note => Tone.Frequency(note).transpose(interval).toNote())
-    setCurrentChord(newChord)
-  };
 
+  const playChord = () => {
+    synth.triggerAttackRelease(Tone.Frequency(keyCenter.concat(octave.toString())).harmonize(chordType), 1);
+  };
+  
+  //probably dont need this now 
+  // const changeKey = (chord, interval) => {
+  //   const newChord = chord.map(note => Tone.Frequency(note).transpose(interval).toNote())
+  //   setKeyCenter(newKey)
+  // };
+
+  const keyNodes = keyCenters.map(key => {
+    return <option key={key.name} value={key.value}>{key.name}</option>
+  })
 
   const chordNodes = Object.keys(chordTypes).map(chord => {
     return <option key={chord} value={chord}>{chord}</option>
   })
 
-  const handleChange = (event) => {
+  const handleKeyChange = (event) => {
     const { target } = event;
     const { value } = target;
     event.persist();
 
-    setCurrentChordType(value);
-  
+    setKeyCenter(value);
   };
 
-  useEffect(() => {
-    setCurrentChord(chordTypes[currentChordType])
-  }, [currentChordType])
+  // const handleChordTypeChange = (event) => {
+  //   const { target } = event;
+  //   const { value } = target;
+  //   event.persist();
+
+  //   setCurrentChordType(value);
+  // };
+
+  // useEffect(() => {
+  //   setCurrentChord(chordTypes[currentChordType])
+  // }, [currentChordType])
 
 
   return (
     <>
-      <select id="chords" name="chords" onChange={(handleChange)}>
-        {chordNodes}
+      <select id="keys" name="keys" onChange={(handleKeyChange)}>
+        {keyNodes}
       </select>
-       {/* this doesnt work because the currentChord state is just a reference into the notes of the chord and the change key function returns the actual chord, but in difference reference ie: not 'C4', 'E4' */}
-      <button onClick={() => changeKey(currentChord, 3)} >Change Key</button>
-      <p>{currentChord[0].slice(0, -1)}  {currentChordType}</p>
-      <button className="note" onClick={() => playChord(currentChord)}>
+      {/* <button onClick={() => changeKey(currentChord, keyCenter)} >Change Key</button> */}
+      {/* <select id="chords" name="chords" onChange={(handleChordTypeChange)}>
+        {chordNodes}
+      </select> */}
+      {/* <p>{currentChord[0].slice(0, -1)}  {currentChordType}</p> */}
+      <button className="note" onClick={() => playChord()}>
           Playchord
       </button>
     </>
