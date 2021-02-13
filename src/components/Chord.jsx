@@ -45,10 +45,12 @@ const Chord = () => {
   
   return (
     <>
+      <span>Ocatave</span>
+      <button onClick={() => setOctave(octave + 1)}>Up</button>
+      <button onClick={() => setOctave(octave - 1)}>Down</button>
       <select id="keys" name="keys" onChange={(handleKeyChange)}>
         {keyNodes}
       </select>
-      
       <select id="chords" name="chords" onChange={(handleChordTypeChange)}>
         {chordNodes}
       </select>
