@@ -23,6 +23,7 @@ const Scale = () => {
     setIsLoaded(true)
   })
 
+
   const scale1 = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4']
 
   const seq = new Tone.Sequence((time, note) => {
@@ -31,24 +32,27 @@ const Scale = () => {
   }, scale1).start(0);
 
   const handleClick = () => {
-    if (!isPlaying) {
+    
       Tone.Transport.start()
-      setIsPlaying(true)
-    } else {
-      Tone.Transport.stop()
-      setIsPlaying(false)
-    }
+    
+      
   }
   
+  const handleStop = () => {
+    Tone.Transport.stop()
+    
+  }
   
 
   return (
     <>
       {
         isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayScale</button>
+        
         : <p>loading...</p>
       }
       
+      <button onClick={handleStop}>Stop</button>
     add a scale selector and a button to play the chord
     </>
   )
