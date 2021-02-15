@@ -4,6 +4,9 @@ import * as Tone from "tone";
 
 const Scale = () => {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  
+  
 
   const pianoSampler = new Tone.Sampler({
     urls: {
@@ -20,12 +23,29 @@ const Scale = () => {
     setIsLoaded(true)
   })
 
-  const handleClick = () => pianoSampler.triggerAttack("C4");
+  const scale1 = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4']
+
+  const seq = new Tone.Sequence((time, note) => {
+    pianoSampler.triggerAttackRelease(note, 0.1, time);
+    // subdivisions are given as subarrays
+  }, scale1).start(0);
+
+  const handleClick = () => {
+    if (!isPlaying) {
+      Tone.Transport.start()
+      setIsPlaying(true)
+    } else {
+      Tone.Transport.stop()
+      setIsPlaying(false)
+    }
+  }
   
+  
+
   return (
     <>
       {
-        isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>click</button>
+        isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayScale</button>
         : <p>loading...</p>
       }
       

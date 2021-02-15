@@ -16,7 +16,7 @@ const Chord = () => {
   const playChord = () => {
     const startingNote = keyCenter.concat(octave.toString())
     console.log(startingNote)
-    synth.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), 1);
+    synth.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "4n");
   };
 
   const keyNodes = keyCenters.map(key => {
@@ -56,7 +56,7 @@ const Chord = () => {
       </select>
       {/* <p>{currentChord[0].slice(0, -1)}  {currentChordType}</p> */}
       <button className="note" onClick={() => playChord()}>
-          Playchord
+          PlayChord
       </button>
     </>
   )
