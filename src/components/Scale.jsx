@@ -26,29 +26,22 @@ const Scale = () => {
 
   const scale1 = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4']
 
-  const seq = new Tone.Sequence((time, note) => {
+  const testSequence = new Tone.Sequence((time, note) => {
     pianoSampler.triggerAttackRelease(note, 0.1, time);
-    // subdivisions are given as subarrays
   }, scale1).start(0);
 
   const handleClick = () => {
-    
       Tone.Transport.start()
-    
-      
   }
   
   const handleStop = () => {
     Tone.Transport.stop()
-    
   }
   
-
   return (
     <>
       {
         isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayScale</button>
-        
         : <p>loading...</p>
       }
       
