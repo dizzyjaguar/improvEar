@@ -26,8 +26,6 @@ const Metronome = () => {
       <p>{bars}</p>
       <button onClick={() => setTempoState(tempoState - 1)}>lower</button>
       <button onClick={() => setTempoState(tempoState + 1)}>raise</button>
-      <button onClick={() => Tone.Transport.start()}>start</button>
-      <button onClick={() => Tone.Transport.stop()}>stop</button>
     </>
   )
 }

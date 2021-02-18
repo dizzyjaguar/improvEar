@@ -7,16 +7,31 @@ const Chord = () => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
   const [chordType, setChordType] = useState([0, 4, 7])
+  const [isLoaded, setIsLoaded] = useState(false)
   // const [currentChord, setCurrentChord] = useState()
 
   
-  const synth = new Tone.PolySynth().toDestination();
+  // const synth = new Tone.PolySynth().toDestination();
+  const pianoSampler = new Tone.Sampler({
+    urls: {
+      "C4": "C4.mp3",
+      "D#4": "Ds4.mp3",
+      "F#4": "Fs4.mp3",
+      "A4": "A4.mp3",
+    },
+    release: 1,
+    baseUrl: "https://tonejs.github.io/audio/salamander/",
+  }).toDestination();
+  
+  Tone.loaded().then(() => {
+    setIsLoaded(true)
+  })
   
 
   const playChord = () => {
     const startingNote = keyCenter.concat(octave.toString())
     console.log(startingNote)
-    synth.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "4n");
+    pianoSampler.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "1n");
   };
 
   // need to get the chord to start with the transport just like the scale
