@@ -19,6 +19,11 @@ const Chord = () => {
     synth.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "4n");
   };
 
+  // need to get the chord to start with the transport just like the scale
+  // const testSequence = new Tone.Sequence((time, note) => {
+  //   playChord(note, 0.1, time);
+  // }).start(0);
+
   const keyNodes = keyCenters.map(key => {
     return <option key={key.name} value={key.value}>{key.name}</option>
   })
