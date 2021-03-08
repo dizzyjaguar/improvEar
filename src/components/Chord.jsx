@@ -26,10 +26,23 @@ const Chord = () => {
   Tone.loaded().then(() => {
     setIsLoaded(true)
   })
+
+  const startingNote = keyCenter.concat(octave.toString())
+  
+  const chordEvent = new Tone.ToneEvent(((time, chord) => {
+	// the chord as well as the exact time of the event
+	// are passed in as arguments to the callback function
+	pianoSampler.triggerAttackRelease(chord, 2, time, .5);
+  }), Tone.Frequency(startingNote).harmonize(chordType));
+  // start the chord at the beginning of the transport timeline
+  chordEvent.start(0);
+  
+  
+  
   
 
   const playChord = () => {
-    const startingNote = keyCenter.concat(octave.toString())
+    // const startingNote = keyCenter.concat(octave.toString())
     console.log(startingNote)
     pianoSampler.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "1n", Tone.now(), 2.5 );
   };
