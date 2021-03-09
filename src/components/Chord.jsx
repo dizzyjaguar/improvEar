@@ -32,14 +32,21 @@ const Chord = () => {
   const chordEvent = new Tone.ToneEvent(((time, chord) => {
 	// the chord as well as the exact time of the event
 	// are passed in as arguments to the callback function
-	pianoSampler.triggerAttackRelease(chord, 2, time, .5);
+	pianoSampler.triggerAttackRelease(chord, 2, time, .3);
   }), Tone.Frequency(startingNote).harmonize(chordType));
   // start the chord at the beginning of the transport timeline
   chordEvent.start(0);
   
   
+  // console.log(Tone.Transport)
+
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+
+  // getKeyByValue(chordTypes, chordType)
   
-  
+  console.log(`the current playing chord should be ${keyCenter} ${getKeyByValue(chordTypes, chordType)}`)
 
   const playChord = () => {
     // const startingNote = keyCenter.concat(octave.toString())
