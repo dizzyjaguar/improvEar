@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
 import { chordTypes, keyCenters } from '../data/chords'
 
@@ -10,8 +10,7 @@ const Chord = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   // const [currentChord, setCurrentChord] = useState()
 
-  
-  // const synth = new Tone.PolySynth().toDestination();
+
   const pianoSampler = new Tone.Sampler({
     urls: {
       "C4": "C4.mp3",
@@ -27,37 +26,46 @@ const Chord = () => {
     setIsLoaded(true)
   })
 
-  const startingNote = keyCenter.concat(octave.toString())
+  const startingNote = keyCenter.concat(octave.toString());
   
-  const chordEvent = new Tone.ToneEvent(((time, chord) => {
-	// the chord as well as the exact time of the event
-	// are passed in as arguments to the callback function
-	pianoSampler.triggerAttackRelease(chord, 2, time, .3);
-  }), Tone.Frequency(startingNote).harmonize(chordType));
-  // start the chord at the beginning of the transport timeline
-  chordEvent.start(0);
+  const chordEvent = useRef();
   
-  
-  // console.log(Tone.Transport)
+  useEffect(() => {
+    chordEvent.current = new Tone.ToneEvent(((time, chord) => {
+      pianoSampler.triggerAttackRelease(chord, 2, time, .3);
+    }), Tone.Frequency(startingNote).harmonize(chordType))
+    chordEvent.current.start(0)
+  }, []);
 
+  useEffect(() => {
+    chordEvent.current.dispose();
+    chordEvent.current = new Tone.ToneEvent(((time, chord) => {
+      pianoSampler.triggerAttackRelease(chord, 2, time, .3);
+    }), Tone.Frequency(startingNote).harmonize(chordType))
+    chordEvent.current.start(0)
+  }, [chordType])
+
+  useEffect(() => {
+    chordEvent.current.dispose();
+    chordEvent.current = new Tone.ToneEvent(((time, chord) => {
+      pianoSampler.triggerAttackRelease(chord, 2, time, .3);
+    }), Tone.Frequency(startingNote).harmonize(chordType))
+    chordEvent.current.start(0)
+    // needs to be startingNote, not keyCenter otherwize doesnt change upon octave change
+  }, [startingNote])
+  
+  // console.log(chordEvent)
+  // console.log(Tone.Transport._scheduledEvents)
+  
+  // this is just for loggin what the chord should be for checking
+  // getKeyByValue(chordTypes, chordType)
   function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
   }
 
-  // getKeyByValue(chordTypes, chordType)
-  
-  console.log(`the current playing chord should be ${keyCenter} ${getKeyByValue(chordTypes, chordType)}`)
-
   const playChord = () => {
-    // const startingNote = keyCenter.concat(octave.toString())
-    console.log(startingNote)
     pianoSampler.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "1n", Tone.now(), 2.5 );
   };
-
-  // need to get the chord to start with the transport just like the scale
-  // const testSequence = new Tone.Sequence((time, note) => {
-  //   playChord(note, 0.1, time);
-  // }).start(0);
 
   const keyNodes = keyCenters.map(key => {
     return <option key={key.name} value={key.value}>{key.name}</option>

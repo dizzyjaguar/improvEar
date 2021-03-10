@@ -15,7 +15,7 @@ const Metronome = () => {
   
   // stops the transport after the first measure
   if(bars[0] === '1' ) Tone.Transport.stop();
-  console.log(typeof bars)
+  // console.log(typeof bars)
 
   const theTempo = Tone.Transport.bpm.value = tempoState;
   
