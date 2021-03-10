@@ -12,9 +12,11 @@ const Metronome = () => {
     }, 100);
     return () => clearInterval(interval);
   }, []);
+
+  console.log(bars)
   
   // stops the transport after the first measure
-  if(bars[0] === '1' ) Tone.Transport.stop();
+  if(bars[2] === '3' ) Tone.Transport.stop();
   // console.log(typeof bars)
 
   const theTempo = Tone.Transport.bpm.value = tempoState;
