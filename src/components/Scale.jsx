@@ -23,9 +23,9 @@ const Scale = () => {
 
   const scale1 = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5']
 
-  // const testSequence = new Tone.Sequence((time, note) => {
-  //   pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
-  // }, scale1).start(0);
+  const testSequence = new Tone.Sequence((time, note) => {
+    pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
+  }, scale1).start(0);
 
   const handleClick = () => {
       Tone.Transport.start()

@@ -32,7 +32,7 @@ const Chord = () => {
   
   useEffect(() => {
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {
-      pianoSampler.triggerAttackRelease(chord, 2, time, .3);
+      pianoSampler.triggerAttackRelease(chord, 2, time, 1);
     }), Tone.Frequency(startingNote).harmonize(chordType))
     chordEvent.current.start(0)
   }, []);
@@ -40,7 +40,7 @@ const Chord = () => {
   useEffect(() => {
     chordEvent.current.dispose();
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {
-      pianoSampler.triggerAttackRelease(chord, 2, time, .3);
+      pianoSampler.triggerAttackRelease(chord, 2, time, 1);
     }), Tone.Frequency(startingNote).harmonize(chordType))
     chordEvent.current.start(0)
   }, [chordType])
@@ -48,7 +48,7 @@ const Chord = () => {
   useEffect(() => {
     chordEvent.current.dispose();
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {
-      pianoSampler.triggerAttackRelease(chord, 2, time, .3);
+      pianoSampler.triggerAttackRelease(chord, 2, time, 1);
     }), Tone.Frequency(startingNote).harmonize(chordType))
     chordEvent.current.start(0)
     // needs to be startingNote, not keyCenter otherwize doesnt change upon octave change
