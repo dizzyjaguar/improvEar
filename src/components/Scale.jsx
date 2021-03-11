@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import * as Tone from "tone";
+import { scaleTypes } from '../data/scales';
 
 
 const Scale = () => {
+  const [keyCenter, setKeyCenter] = useState('C')
+  const [octave, setOctave] = useState(4)
+  const [scaleType, setScaleType] = useState()
   const [isLoaded, setIsLoaded] = useState(false)
 
   const pianoSampler = new Tone.Sampler({
@@ -20,12 +24,19 @@ const Scale = () => {
     setIsLoaded(true)
   })
 
+  const majorScale = scaleTypes.major;
+  // this should get me the notes that would be playable via the sequence
+  
 
+  const newScale = Tone.Frequency("C4").harmonize(majorScale)
+  console.log(newScale)
   const scale1 = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5']
 
   const testSequence = new Tone.Sequence((time, note) => {
     pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
-  }, scale1).start(0);
+  }, newScale).start(0);
+
+
 
   const handleClick = () => {
       Tone.Transport.start()
