@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import * as Tone from "tone";
+import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
 
 
 const Scale = () => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
-  const [scaleType, setScaleType] = useState()
+  const [scaleType, setScaleType] = useState(scaleTypes.major)
   const [isLoaded, setIsLoaded] = useState(false)
+
+  const startingNote = keyCenter.concat(octave.toString());
 
   const pianoSampler = new Tone.Sampler({
     urls: {
@@ -24,19 +27,11 @@ const Scale = () => {
     setIsLoaded(true)
   })
 
-  const majorScale = scaleTypes.major;
-  // this should get me the notes that would be playable via the sequence
+  const selectedScale = Tone.Frequency(startingNote).harmonize(scaleType);
   
-
-  const newScale = Tone.Frequency("C4").harmonize(majorScale)
-  console.log(newScale)
-  const scale1 = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5']
-
-  const testSequence = new Tone.Sequence((time, note) => {
+  const scaleSequence = new Tone.Sequence((time, note) => {
     pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
-  }, newScale).start(0);
-
-
+  }, selectedScale).start(0);
 
   const handleClick = () => {
       Tone.Transport.start()
@@ -46,15 +41,47 @@ const Scale = () => {
     Tone.Transport.stop()
   }
   
+  const keyNodes = keyCenters.map(key => {
+    return <option key={key.name} value={key.value}>{key.name}</option>
+  })
+
+  const scaleNodes = Object.keys(scaleTypes).map(chord => {
+    return <option key={chord} value={chord}>{chord}</option>
+  })
+
+  const handleKeyChange = (event) => {
+    const { target } = event;
+    const { value } = target;
+    event.persist();
+
+    setKeyCenter(value);
+  };
+
+  const handleScaleTypeChange = (event) => {
+    const { target } = event;
+    const { value } = target;
+    event.persist();
+    
+    setScaleType(scaleTypes[value]);
+  };
+  
   return (
     <>
+      <h3>Scale</h3>
+      <select id="keys" name="keys" onChange={(handleKeyChange)}>
+        {keyNodes}
+      </select>
+      <select id="chords" name="chords" onChange={(handleScaleTypeChange)}>
+        {scaleNodes}
+      </select>
+      
+    
+      <br/>
       {
-        isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayScale</button>
+        isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayTogether</button>
         : <p>loading...</p>
       }
-      
       <button onClick={handleStop}>Stop</button>
-    add a scale selector and a button to play the chord
     </>
   )
 }
