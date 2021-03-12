@@ -43,7 +43,7 @@ const Scale = () => {
     scaleEvent.current = new Tone.Sequence((time, note) => {
       pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
     }, selectedScale).start(0)
-  }, [scaleType, keyCenter])
+  }, [scaleType, startingNote])
 
   // const scaleSequence = new Tone.Sequence((time, note) => {
   //   pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
@@ -92,6 +92,9 @@ const Scale = () => {
   return (
     <>
       <h3>Scale</h3>
+      <span>Octave</span>
+      <button onClick={() => setOctave(octave + 1)}>Up</button>
+      <button onClick={() => setOctave(octave - 1)}>Down</button>
       <select id="keys" name="keys" onChange={(handleKeyChange)}>
         {keyNodes}
       </select>
@@ -105,6 +108,7 @@ const Scale = () => {
     
       <br/>
       {
+
         isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayTogether</button>
         : <p>loading...</p>
       }
