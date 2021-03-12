@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
 import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
@@ -27,11 +27,27 @@ const Scale = () => {
     setIsLoaded(true)
   })
 
+  const scaleEvent = useRef();
+
   const selectedScale = Tone.Frequency(startingNote).harmonize(scaleType);
-  
-  const scaleSequence = new Tone.Sequence((time, note) => {
-    pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
-  }, selectedScale).start(0);
+  console.log(selectedScale)
+
+  useEffect(() => {
+    scaleEvent.current = new Tone.Sequence((time, note) => {
+      pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
+    }, selectedScale).start(0)
+  }, []);
+
+  useEffect(() => {
+    scaleEvent.current.dispose();
+    scaleEvent.current = new Tone.Sequence((time, note) => {
+      pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
+    }, selectedScale).start(0)
+  }, [scaleType, keyCenter])
+
+  // const scaleSequence = new Tone.Sequence((time, note) => {
+  //   pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
+  // }, selectedScale).start(0);
 
   const handleClick = () => {
       Tone.Transport.start()
@@ -40,6 +56,14 @@ const Scale = () => {
   const handleStop = () => {
     Tone.Transport.stop()
   }
+
+  
+  // this is still playing at the same time, either write out a bunch of triggerAttackRelease or need to find another way via sequence or pattern but doesnt go to the Transport.
+  const playScale = () => {
+    const mappedScale = selectedScale.map(note => note._val)
+    console.log(mappedScale)
+    pianoSampler.triggerAttackRelease(mappedScale, '4n', Tone.now(), 2.5)
+  };
   
   const keyNodes = keyCenters.map(key => {
     return <option key={key.name} value={key.value}>{key.name}</option>
@@ -74,6 +98,9 @@ const Scale = () => {
       <select id="chords" name="chords" onChange={(handleScaleTypeChange)}>
         {scaleNodes}
       </select>
+      <button className="note" onClick={() => playScale()}>
+        PlayScale
+      </button>
       
     
       <br/>
