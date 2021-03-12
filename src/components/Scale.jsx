@@ -23,9 +23,9 @@ const Scale = () => {
     baseUrl: "https://tonejs.github.io/audio/salamander/",
   }).toDestination();
   
-  Tone.loaded().then(() => {
-    setIsLoaded(true)
-  })
+  // Tone.loaded().then(() => {
+  //   setIsLoaded(true)
+  // })
 
   const scaleEvent = useRef();
 
@@ -49,13 +49,13 @@ const Scale = () => {
   //   pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
   // }, selectedScale).start(0);
 
-  const handleClick = () => {
-      Tone.Transport.start()
-  }
+  // const handleClick = () => {
+  //     Tone.Transport.start()
+  // }
   
-  const handleStop = () => {
-    Tone.Transport.stop()
-  }
+  // const handleStop = () => {
+  //   Tone.Transport.stop()
+  // }
 
   
   // this is still playing at the same time, either write out a bunch of triggerAttackRelease or need to find another way via sequence or pattern but doesnt go to the Transport.
@@ -107,12 +107,12 @@ const Scale = () => {
       
     
       <br/>
-      {
+      {/* {
 
         isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayTogether</button>
         : <p>loading...</p>
       }
-      <button onClick={handleStop}>Stop</button>
+      <button onClick={handleStop}>Stop</button> */}
     </>
   )
 }
