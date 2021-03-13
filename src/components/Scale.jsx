@@ -45,18 +45,6 @@ const Scale = () => {
     }, selectedScale).start(0)
   }, [scaleType, startingNote])
 
-  // const scaleSequence = new Tone.Sequence((time, note) => {
-  //   pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
-  // }, selectedScale).start(0);
-
-  // const handleClick = () => {
-  //     Tone.Transport.start()
-  // }
-  
-  // const handleStop = () => {
-  //   Tone.Transport.stop()
-  // }
-
   
   // this is still playing at the same time, either write out a bunch of triggerAttackRelease or need to find another way via sequence or pattern but doesnt go to the Transport.
   const playScale = () => {
