@@ -1,8 +1,10 @@
 export const useScaleDegree = (scale, degree) => {
-  // take the scale and get the length, 
-  // get the chosen scale degree
-  // move the first item to the end of the array
-  // until youve reached the chosed scale degree
-  // then return that new array
-  // set that array to the scale state
-}
+  const newScale = scale.slice()
+  
+  for (let i = 0; i < degree-1; i++) {
+    newScale.push(newScale[0]);
+    newScale.shift();
+  }
+  
+  return newScale;
+};
