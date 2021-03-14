@@ -26,13 +26,29 @@ const Scale = ({ pianoSampler }) => {
     }, selectedScale).start(0)
   }, [scaleType, startingNote])
 
-  
+  //COULD JUST HAVE A MUTE BUTTON FOR THE CHORD IF ALL ELSE FAILS
   // this is still playing at the same time, either write out a bunch of triggerAttackRelease or need to find another way via sequence or pattern but doesnt go to the Transport.
   const playScale = () => {
     const mappedScale = selectedScale.map(note => note._val)
     console.log(mappedScale)
-    pianoSampler.triggerAttackRelease(mappedScale, '4n', Tone.now(), 2.5)
+    // this way works, but would not work in real production
+    pianoSampler.triggerAttackRelease(mappedScale[0], '16n', Tone.now(), 2.5)
+    pianoSampler.triggerAttackRelease(mappedScale[1], '16n', Tone.now() + .3, 2.5)
+    pianoSampler.triggerAttackRelease(mappedScale[2], '16n', Tone.now() + .6, 2.5)
+    pianoSampler.triggerAttackRelease(mappedScale[3], '16n', Tone.now() + .9, 2.5)
+    pianoSampler.triggerAttackRelease(mappedScale[4], '16n', Tone.now() + 1.2, 2.5)
+    pianoSampler.triggerAttackRelease(mappedScale[5], '16n', Tone.now() + 1.5, 2.5)
+    pianoSampler.triggerAttackRelease(mappedScale[6], '16n', Tone.now() + 1.8, 2.5)
+    
+
+
+    // for (let i = 0; i < mappedScale.length; i++ ) {
+    //   let startTime = 0
+    //   pianoSampler.triggerAttackRelease(mappedScale[i], '8n', Tone.now() + startTime, 2.5)
+    //   startTime += .5;
+    // }
   };
+
   
   const keyNodes = keyCenters.map(key => {
     return <option key={key.name} value={key.value}>{key.name}</option>

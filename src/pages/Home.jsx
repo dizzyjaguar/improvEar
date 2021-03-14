@@ -44,10 +44,10 @@ const Home = () => {
           <br/>
           <p>----------</p>
           <button disabled={!isLoaded} onClick={handleClick}>PlayTogether</button>
+          <button onClick={handleStop}>Stop</button>
           </>
           : <p>loading...</p>
         }
-        <button onClick={handleStop}>Stop</button>
       
     </>
   )
