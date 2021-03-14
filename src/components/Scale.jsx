@@ -4,31 +4,12 @@ import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
 
 
-const Scale = () => {
+const Scale = ({ pianoSampler }) => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
   const [scaleType, setScaleType] = useState(scaleTypes.major)
-  const [isLoaded, setIsLoaded] = useState(false)
-
   const startingNote = keyCenter.concat(octave.toString());
-
-  const pianoSampler = new Tone.Sampler({
-    urls: {
-      "C4": "C4.mp3",
-      "D#4": "Ds4.mp3",
-      "F#4": "Fs4.mp3",
-      "A4": "A4.mp3",
-    },
-    release: 1,
-    baseUrl: "https://tonejs.github.io/audio/salamander/",
-  }).toDestination();
-  
-  // Tone.loaded().then(() => {
-  //   setIsLoaded(true)
-  // })
-
   const scaleEvent = useRef();
-
   const selectedScale = Tone.Frequency(startingNote).harmonize(scaleType);
   console.log(selectedScale)
 
@@ -92,15 +73,7 @@ const Scale = () => {
       <button className="note" onClick={() => playScale()}>
         PlayScale
       </button>
-      
-    
       <br/>
-      {/* {
-
-        isLoaded ? <button disabled={!isLoaded} onClick={handleClick}>PlayTogether</button>
-        : <p>loading...</p>
-      }
-      <button onClick={handleStop}>Stop</button> */}
     </>
   )
 }

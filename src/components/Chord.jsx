@@ -3,31 +3,11 @@ import * as Tone from "tone";
 import { chordTypes, keyCenters } from '../data/chords'
 
 
-const Chord = () => {
+const Chord = ({ pianoSampler }) => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
   const [chordType, setChordType] = useState([0, 4, 7])
-  const [isLoaded, setIsLoaded] = useState(false)
-  // const [currentChord, setCurrentChord] = useState()
-
-
-  const pianoSampler = new Tone.Sampler({
-    urls: {
-      "C4": "C4.mp3",
-      "D#4": "Ds4.mp3",
-      "F#4": "Fs4.mp3",
-      "A4": "A4.mp3",
-    },
-    release: 1,
-    baseUrl: "https://tonejs.github.io/audio/salamander/",
-  }).toDestination();
-  
-  Tone.loaded().then(() => {
-    setIsLoaded(true)
-  })
-
   const startingNote = keyCenter.concat(octave.toString());
-  
   const chordEvent = useRef();
   
   useEffect(() => {
@@ -52,18 +32,19 @@ const Chord = () => {
     return Object.keys(object).find(key => object[key] === value);
   }
 
-  const playChord = () => {
-    pianoSampler.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "1n", Tone.now(), 2.5 );
-  };
-
+  
   const keyNodes = keyCenters.map(key => {
     return <option key={key.name} value={key.value}>{key.name}</option>
   })
-
+  
   const chordNodes = Object.keys(chordTypes).map(chord => {
     return <option key={chord} value={chord}>{chord}</option>
   })
-
+  
+  const playChord = () => {
+    pianoSampler.triggerAttackRelease(Tone.Frequency(startingNote).harmonize(chordType), "1n", Tone.now(), 2.5 );
+  };
+  
   const handleKeyChange = (event) => {
     const { target } = event;
     const { value } = target;
@@ -83,24 +64,18 @@ const Chord = () => {
   return (
     <>
       <h3>Chord</h3>
-      <span>Ocatave</span>
-      {
-        isLoaded ? 
-        <>
-          <button onClick={() => setOctave(octave + 1)}>Up</button>
-          <button onClick={() => setOctave(octave - 1)}>Down</button>
-          <select id="keys" name="keys" onChange={(handleKeyChange)}>
-            {keyNodes}
-          </select>
-          <select id="chords" name="chords" onChange={(handleChordTypeChange)}>
-            {chordNodes}
-          </select>
-          <button className="note" onClick={() => playChord()}>
-              PlayChord
-          </button> 
-        </>
-        : <p>loading...</p>
-      }
+      <span>Octave</span>
+      <button onClick={() => setOctave(octave + 1)}>Up</button>
+      <button onClick={() => setOctave(octave - 1)}>Down</button>
+      <select id="keys" name="keys" onChange={(handleKeyChange)}>
+        {keyNodes}
+      </select>
+      <select id="chords" name="chords" onChange={(handleChordTypeChange)}>
+        {chordNodes}
+      </select>
+      <button className="note" onClick={() => playChord()}>
+          PlayChord
+      </button> 
     </>
   )
 }
