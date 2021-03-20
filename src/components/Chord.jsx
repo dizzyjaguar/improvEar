@@ -12,7 +12,7 @@ const Chord = ({ pianoSampler }) => {
   
   useEffect(() => {
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {
-      pianoSampler.triggerAttackRelease(chord, 2, time, 1);
+      pianoSampler.triggerAttackRelease(chord, 2, time, 2.5);
     }), Tone.Frequency(startingNote).harmonize(chordType))
     chordEvent.current.start(0)
   }, []);
@@ -20,7 +20,7 @@ const Chord = ({ pianoSampler }) => {
   useEffect(() => {
     chordEvent.current.dispose();
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {
-      pianoSampler.triggerAttackRelease(chord, 2, time, 1);
+      pianoSampler.triggerAttackRelease(chord, 2, time, 2.5);
     }), Tone.Frequency(startingNote).harmonize(chordType))
     chordEvent.current.start(0)
   }, [chordType, startingNote])

@@ -3,7 +3,7 @@ import * as Tone from "tone";
 import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
 
-
+//NEED TO FIGURE OUT WHAT TO DO WHEN THERE ARE 8 NOTE SCALES SELECTED VS 7
 const Scale = ({ pianoSampler }) => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
@@ -15,14 +15,14 @@ const Scale = ({ pianoSampler }) => {
 
   useEffect(() => {
     scaleEvent.current = new Tone.Sequence((time, note) => {
-      pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
+      pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
     }, selectedScale).start(0)
   }, []);
 
   useEffect(() => {
     scaleEvent.current.dispose();
     scaleEvent.current = new Tone.Sequence((time, note) => {
-      pianoSampler.triggerAttackRelease(note, 0.1, time, .5);
+      pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
     }, selectedScale).start(0)
   }, [scaleType, startingNote])
 
