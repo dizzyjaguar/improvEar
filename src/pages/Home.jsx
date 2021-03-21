@@ -3,10 +3,17 @@ import Chord from '../components/Chord';
 import Scale from '../components/Scale';
 import * as Tone from "tone";
 import Metronome from '../components/Metronome';
+import { scaleTypes } from '../data/scales';
 
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [scaleKeyCenter, setScaleKeyCenter] = useState('C')
+  const [scaleOctave, setScaleOctave] = useState(4)
+  const [scaleType, setScaleType] = useState(scaleTypes.major)
+  const scaleStartingNote = scaleKeyCenter.concat(scaleOctave.toString());
+  const selectedScale = Tone.Frequency(scaleStartingNote).harmonize(scaleType);
+  const scaleLength = selectedScale.length
 
   const pianoSampler = new Tone.Sampler({
     urls: {
@@ -18,6 +25,7 @@ const Home = () => {
     release: 1,
     baseUrl: "https://tonejs.github.io/audio/salamander/",
   }).toDestination();
+
 
   Tone.loaded().then(() => {
     setIsLoaded(true)
@@ -36,11 +44,26 @@ const Home = () => {
     <>
         {    
           isLoaded ? <>
-          <Chord pianoSampler={pianoSampler} />
+          <Chord 
+            pianoSampler={pianoSampler}
+            scaleLength={scaleLength}
+            />
           <br />
-          <Scale pianoSampler={pianoSampler} />
+          <Scale 
+            pianoSampler={pianoSampler}
+            keyCenter={scaleKeyCenter}
+            setKeyCenter={setScaleKeyCenter}
+            selectedScale={selectedScale}
+            scaleType={scaleType}
+            startingNote={scaleStartingNote}
+            setScaleType={setScaleType}
+            setOctave={setScaleOctave}
+            octave={setScaleOctave}
+          />
           <br />
-          <Metronome />
+          <Metronome
+            scaleLength={scaleLength}
+          />
           <br/>
           <p>----------</p>
           <button disabled={!isLoaded} onClick={handleClick}>PlayTogether</button>
@@ -52,5 +75,6 @@ const Home = () => {
     </>
   )
 }
+
 
 export default Home;

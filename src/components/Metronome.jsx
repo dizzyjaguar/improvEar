@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as Tone from "tone";
 
 
-const Metronome = () => {
+const Metronome = ({ scaleLength }) => {
   const [tempoState, setTempoState] = useState(100)
   const [bars, setBars] = useState(0)
   
@@ -14,7 +14,9 @@ const Metronome = () => {
   }, []);
 
   console.log(bars)
-  
+  //------------------------------
+  //CREATE SOME LOGIC TO CHANGE WHEN THE TRANSPORT STOPS DEPENDING ON THE SCALE LENGTH
+  //------------------------------
   // stops the transport after the first measure
   if(bars[2] === '3' ) Tone.Transport.stop();
   // console.log(typeof bars)

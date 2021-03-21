@@ -3,12 +3,16 @@ import * as Tone from "tone";
 import { chordTypes, keyCenters } from '../data/chords'
 
 
-const Chord = ({ pianoSampler }) => {
+const Chord = ({ pianoSampler, scaleLength }) => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
   const [chordType, setChordType] = useState([0, 4, 7])
   const startingNote = keyCenter.concat(octave.toString());
   const chordEvent = useRef();
+
+  //------------------------------
+  //CREATE SOME LOGIC TO CHANGE WHEN THE CHORD STOPS DEPENDING ON THE SCALE LENGTH
+  //------------------------------
   
   useEffect(() => {
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {

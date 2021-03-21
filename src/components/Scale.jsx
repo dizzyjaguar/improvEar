@@ -4,14 +4,18 @@ import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
 
 //NEED TO FIGURE OUT WHAT TO DO WHEN THERE ARE 8 NOTE SCALES SELECTED VS 7
-const Scale = ({ pianoSampler }) => {
-  const [keyCenter, setKeyCenter] = useState('C')
-  const [octave, setOctave] = useState(4)
-  const [scaleType, setScaleType] = useState(scaleTypes.major)
-  const startingNote = keyCenter.concat(octave.toString());
+// probably need to share state between here and the metronome to choose when to stop the transport and share with the chord to change how long the chord is held
+// look into useReducer
+const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCenter, setScaleType, setOctave, octave }) => {
+  // const [keyCenter, setKeyCenter] = useState('C')
+  // const [octave, setOctave] = useState(4)
+  // const [scaleType, setScaleType] = useState(scaleTypes.major)
+  // const startingNote = keyCenter.concat(octave.toString());
   const scaleEvent = useRef();
-  const selectedScale = Tone.Frequency(startingNote).harmonize(scaleType);
-  console.log(selectedScale)
+  // const selectedScale = Tone.Frequency(startingNote).harmonize(scaleType);
+  // const scaleLength = selectedScale.length
+  
+  
 
   useEffect(() => {
     scaleEvent.current = new Tone.Sequence((time, note) => {
