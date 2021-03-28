@@ -15,6 +15,7 @@ const Home = () => {
   const selectedScale = Tone.Frequency(scaleStartingNote).harmonize(scaleType);
   const scaleLength = selectedScale.length
 
+
   const pianoSampler = new Tone.Sampler({
     urls: {
       "C4": "C4.mp3",
@@ -38,6 +39,14 @@ const Home = () => {
   const handleStop = () => {
     Tone.Transport.stop()
   }
+
+  const handleScaleOctave = (direction) => {
+    if (direction === 'up') {
+      setScaleOctave(scaleOctave + 1)
+    } else if (direction === 'down') {
+      setScaleOctave(scaleOctave - 1)
+    }
+  };
   
   // add in some animation for colors corresponding to different scales and chords to make a cool animation when the scale over the chord is played
   return (
@@ -57,7 +66,7 @@ const Home = () => {
             scaleType={scaleType}
             startingNote={scaleStartingNote}
             setScaleType={setScaleType}
-            setOctave={setScaleOctave}
+            handleScaleOctave={handleScaleOctave}
             octave={setScaleOctave}
           />
           <br />
