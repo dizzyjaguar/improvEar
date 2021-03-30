@@ -14,11 +14,18 @@ const Metronome = ({ scaleLength }) => {
   }, []);
 
   console.log(bars)
-  //------------------------------
-  //CREATE SOME LOGIC TO CHANGE WHEN THE TRANSPORT STOPS DEPENDING ON THE SCALE LENGTH
-  //------------------------------
-  // stops the transport after the first measure
-  if(bars[2] === '3' ) Tone.Transport.stop();
+  console.log(scaleLength)
+  
+  if(scaleLength === 7) {
+    if(bars[2] === '3') Tone.Transport.stop();
+  } else if(scaleLength === 8) {
+    if(bars[2] === '3' && bars[4] === '3') Tone.Transport.stop();
+  } else if(scaleLength === 9) {
+    if(bars[0] === '1') Tone.Transport.stop();
+  } else if(scaleLength === 12) {
+    if(bars[0] === '1' && bars[2] === '1' && bars[4] === '2') Tone.Transport.stop();
+  }
+  
   // console.log(typeof bars)
 
   const theTempo = Tone.Transport.bpm.value = tempoState;
