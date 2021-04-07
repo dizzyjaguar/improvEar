@@ -13,8 +13,6 @@ const Metronome = ({ scaleLength }) => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log(bars)
-  console.log(scaleLength)
   
   if(scaleLength === 7) {
     if(bars[2] === '3') Tone.Transport.stop();

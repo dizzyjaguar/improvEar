@@ -7,27 +7,39 @@ const Chord = ({ pianoSampler, scaleLength }) => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
   const [chordType, setChordType] = useState([0, 4, 7])
+  const [duration, setDuration] = useState(2)
   const startingNote = keyCenter.concat(octave.toString());
   const chordEvent = useRef();
 
-  //------------------------------
-  //CREATE SOME LOGIC TO CHANGE WHEN THE CHORD STOPS DEPENDING ON THE SCALE LENGTH
-  //------------------------------
+  console.log(` this is the duration : ${duration}`)
+  console.log(` this is the scalelength : ${scaleLength}`)
+  
+  useEffect(() => {
+    if(scaleLength > 7 && scaleLength < 10) {
+      setDuration(2.5)
+    } else if(scaleLength > 9) {
+      setDuration(3.3)
+    } else {
+      setDuration(2)
+    }
+  }, [scaleLength])
   
   useEffect(() => {
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {
-      pianoSampler.triggerAttackRelease(chord, 2, time, 2.5);
+      pianoSampler.triggerAttackRelease(chord, duration, time, 2.5);
     }), Tone.Frequency(startingNote).harmonize(chordType))
-    chordEvent.current.start(0)
+    chordEvent.current.start(0) 
   }, []);
+  
+  // (notes, duration, time, velocity)
 
   useEffect(() => {
     chordEvent.current.dispose();
     chordEvent.current = new Tone.ToneEvent(((time, chord) => {
-      pianoSampler.triggerAttackRelease(chord, 2, time, 2.5);
+      pianoSampler.triggerAttackRelease(chord, duration, time, 2.5);
     }), Tone.Frequency(startingNote).harmonize(chordType))
     chordEvent.current.start(0)
-  }, [chordType, startingNote])
+  }, [chordType, startingNote, duration])
 
   
   // this is just for loggin what the chord should be for checking
