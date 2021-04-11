@@ -2,14 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
 import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
+import { changeScaleDegree } from '../hooks/scaleHooks';
 
-//NEED TO FIGURE OUT WHAT TO DO WHEN THERE ARE 8 NOTE SCALES SELECTED VS 7
-// probably need to share state between here and the metronome to choose when to stop the transport and share with the chord to change how long the chord is held
-// look into useReducer
+
 const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCenter, setScaleType, handleScaleOctave, octave }) => {
   const scaleEvent = useRef();
   
-
+  
   useEffect(() => {
     scaleEvent.current = new Tone.Sequence((time, note) => {
       pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
@@ -71,6 +70,30 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
     setScaleType(scaleTypes[value]);
   };
 
+  console.log(selectedScale)
+
+  console.log(changeScaleDegree(selectedScale, 3))
+
+  // change the degree of the scale, 
+  // set the returned changed scale as the new tone sequence
+  
+  const degreeNodes = selectedScale.map((note, index) => {
+    return <option key={note} value={index+1}>{index + 1}</option>
+  });
+
+  const handleDegreeChange = (event) => {
+    const { target } = event;
+    const { value } = target;
+    event.persist();
+    
+    scaleEvent.current.dispose();
+    scaleEvent.current = new Tone.Sequence((time, note) => {
+      pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
+    }, changeScaleDegree(selectedScale, value)).start(0)
+      
+  };
+
+
   
   return (
     <>
@@ -88,6 +111,10 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
         PlayScale
       </button>
       <br/>
+      <h4>Start from scale degree</h4>
+      <select id="degrees" name="degrees" onChange={(handleDegreeChange)}>
+        {degreeNodes}
+      </select>
     </>
   )
 }

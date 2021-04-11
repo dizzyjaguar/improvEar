@@ -1,4 +1,4 @@
-export const useScaleDegree = (scale, degree) => {
+export const changeScaleDegree = (scale, degree) => {
   const newScale = scale.slice()
   
   for (let i = 0; i < degree-1; i++) {

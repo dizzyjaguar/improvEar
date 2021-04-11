@@ -11,8 +11,8 @@ const Chord = ({ pianoSampler, scaleLength }) => {
   const startingNote = keyCenter.concat(octave.toString());
   const chordEvent = useRef();
 
-  console.log(` this is the duration : ${duration}`)
-  console.log(` this is the scalelength : ${scaleLength}`)
+  // console.log(` this is the duration : ${duration}`)
+  // console.log(` this is the scalelength : ${scaleLength}`)
   
   useEffect(() => {
     if(scaleLength > 7 && scaleLength < 10) {

@@ -53,6 +53,10 @@ const Home = () => {
     <>
         {    
           isLoaded ? <>
+            <Metronome
+              scaleLength={scaleLength}
+            />
+            <br />
           <Chord 
             pianoSampler={pianoSampler}
             scaleLength={scaleLength}
@@ -68,10 +72,6 @@ const Home = () => {
             setScaleType={setScaleType}
             handleScaleOctave={handleScaleOctave}
             octave={setScaleOctave}
-          />
-          <br />
-          <Metronome
-            scaleLength={scaleLength}
           />
           <br/>
           <p>----------</p>
