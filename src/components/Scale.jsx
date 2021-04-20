@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
 import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
-import { changeScaleDegree } from '../hooks/scaleHooks';
+import { changeScaleDegree } from '../utils/scaleDegree';
 
 
 const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCenter, setScaleType, handleScaleOctave, octave }) => {
@@ -14,14 +14,14 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
       pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
     }, selectedScale).start(0)
   }, []);
-
+  
   useEffect(() => {
     scaleEvent.current.dispose();
     scaleEvent.current = new Tone.Sequence((time, note) => {
       pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
     }, selectedScale).start(0)
   }, [scaleType, startingNote])
-
+  
   //COULD JUST HAVE A MUTE BUTTON FOR THE CHORD IF ALL ELSE FAILS
   // this is still playing at the same time, either write out a bunch of triggerAttackRelease or need to find another way via sequence or pattern but doesnt go to the Transport.
   const playScale = () => {
@@ -36,64 +36,61 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
     pianoSampler.triggerAttackRelease(mappedScale[5], '16n', Tone.now() + 1.5, 2.5)
     pianoSampler.triggerAttackRelease(mappedScale[6], '16n', Tone.now() + 1.8, 2.5)
     
-
-
+    
+    
     // for (let i = 0; i < mappedScale.length; i++ ) {
-    //   let startTime = 0
-    //   pianoSampler.triggerAttackRelease(mappedScale[i], '8n', Tone.now() + startTime, 2.5)
-    //   startTime += .5;
-    // }
-  };
-
-  
-  const keyNodes = keyCenters.map(key => {
-    return <option key={key.name} value={key.value}>{key.name}</option>
-  })
-
-  const scaleNodes = Object.keys(scaleTypes).map(chord => {
-    return <option key={chord} value={chord}>{chord}</option>
-  })
-
-  const handleKeyChange = (event) => {
-    const { target } = event;
-    const { value } = target;
-    event.persist();
-
-    setKeyCenter(value);
-  };
-
-  const handleScaleTypeChange = (event) => {
-    const { target } = event;
-    const { value } = target;
-    event.persist();
+      //   let startTime = 0
+      //   pianoSampler.triggerAttackRelease(mappedScale[i], '8n', Tone.now() + startTime, 2.5)
+      //   startTime += .5;
+      // }
+    };
     
-    setScaleType(scaleTypes[value]);
-  };
-
-  console.log(selectedScale)
-
-  console.log(changeScaleDegree(selectedScale, 3))
-
-  // change the degree of the scale, 
-  // set the returned changed scale as the new tone sequence
-  
-  const degreeNodes = selectedScale.map((note, index) => {
-    return <option key={note} value={index+1}>{index + 1}</option>
-  });
-
-  const handleDegreeChange = (event) => {
-    const { target } = event;
-    const { value } = target;
-    event.persist();
     
-    scaleEvent.current.dispose();
-    scaleEvent.current = new Tone.Sequence((time, note) => {
-      pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
-    }, changeScaleDegree(selectedScale, value)).start(0)
+    const keyNodes = keyCenters.map(key => {
+      return <option key={key.name} value={key.value}>{key.name}</option>
+    })
+    
+    const scaleNodes = Object.keys(scaleTypes).map(chord => {
+      return <option key={chord} value={chord}>{chord}</option>
+    })
+    
+    const handleKeyChange = (event) => {
+      const { target } = event;
+      const { value } = target;
+      event.persist();
       
+      setKeyCenter(value);
+    };
+    
+    const handleScaleTypeChange = (event) => {
+      const { target } = event;
+      const { value } = target;
+      event.persist();
+      
+      setScaleType(scaleTypes[value]);
+    };
+    
+    const degreeNodes = selectedScale.map((note, index) => {
+      return <option key={note} value={index+1}>{index + 1}</option>
+    });
+    
+    const scaleDegree = useRef(1)
+
+    const handleDegreeChange = (event) => {
+      const { target } = event;
+      const { value } = target;
+      event.persist();
+      
+
+      scaleEvent.current.dispose();
+      scaleEvent.current = new Tone.Sequence((time, note) => {
+        pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
+    }, changeScaleDegree(selectedScale, value)).start(0)  
   };
 
-
+  console.log(scaleDegree.current)
+  
+  console.log(selectedScale)
   
   return (
     <>
@@ -112,7 +109,7 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
       </button>
       <br/>
       <h4>Start from scale degree</h4>
-      <select id="degrees" name="degrees" onChange={(handleDegreeChange)}>
+      <select id="degrees" name="degrees" ref={scaleDegree} defaultValue={1} onChange={(handleDegreeChange)}>
         {degreeNodes}
       </select>
     </>
