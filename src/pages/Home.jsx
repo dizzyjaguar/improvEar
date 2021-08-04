@@ -33,6 +33,8 @@ const Home = () => {
   })
   
   const handleClick = () => {
+    // added this because wasn't playing on initial load
+    Tone.start()
     Tone.Transport.start()
   }
 

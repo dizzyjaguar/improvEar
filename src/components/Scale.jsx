@@ -70,25 +70,24 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
       setScaleType(scaleTypes[value]);
     };
     
-    const degreeNodes = selectedScale.map((note, index) => {
-      return <option key={note} value={index+1}>{index + 1}</option>
-    });
+  //   const degreeNodes = selectedScale.map((note, index) => {
+  //     return <option key={note} value={index+1}>{index + 1}</option>
+  //   });
     
-    const scaleDegree = useRef(1)
+  //   const scaleDegree = useRef(1)
 
-    const handleDegreeChange = (event) => {
-      const { target } = event;
-      const { value } = target;
-      event.persist();
+  //   const handleDegreeChange = (event) => {
+  //     const { target } = event;
+  //     const { value } = target;
+  //     event.persist();
       
+  //     scaleEvent.current.dispose();
+  //     scaleEvent.current = new Tone.Sequence((time, note) => {
+  //       pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
+  //   }, changeScaleDegree(selectedScale, value)).start(0)  
+  // };
 
-      scaleEvent.current.dispose();
-      scaleEvent.current = new Tone.Sequence((time, note) => {
-        pianoSampler.triggerAttackRelease(note, 0.1, time, 2.5);
-    }, changeScaleDegree(selectedScale, value)).start(0)  
-  };
-
-  console.log(scaleDegree.current)
+  // console.log(scaleDegree.current)
   
   console.log(selectedScale)
   
@@ -108,10 +107,10 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
         PlayScale
       </button>
       <br/>
-      <h4>Start from scale degree</h4>
+      {/* <h4>Start from scale degree</h4>
       <select id="degrees" name="degrees" ref={scaleDegree} defaultValue={1} onChange={(handleDegreeChange)}>
         {degreeNodes}
-      </select>
+      </select> */}
     </>
   )
 }
