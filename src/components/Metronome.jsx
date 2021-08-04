@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '@material-ui/core/Button';
 import * as Tone from "tone";
 
 
@@ -33,8 +34,8 @@ const Metronome = ({ scaleLength }) => {
       <h3>Tempo</h3>
       <p>{theTempo}</p>
       <p>{bars}</p>
-      <button onClick={() => setTempoState(tempoState - 1)}>lower</button>
-      <button onClick={() => setTempoState(tempoState + 1)}>raise</button>
+      <Button variant="outlined" color="primary" size="small" onClick={() => setTempoState(tempoState - 1)}>lower</Button>
+      <Button variant="outlined" color="primary" size="small" onClick={() => setTempoState(tempoState + 1)}>raise</Button>
     </>
   )
 }

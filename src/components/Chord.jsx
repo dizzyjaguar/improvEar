@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
+import Button from '@material-ui/core/Button';
 import { chordTypes, keyCenters } from '../data/chords'
+import { MenuItem, Select } from '@material-ui/core';
 
 
 const Chord = ({ pianoSampler, scaleLength }) => {
   const [keyCenter, setKeyCenter] = useState('C')
   const [octave, setOctave] = useState(4)
-  const [chordType, setChordType] = useState([0, 4, 7])
+  const [chordType, setChordType] = useState(chordTypes.major)
   const [duration, setDuration] = useState(2)
   const startingNote = keyCenter.concat(octave.toString());
   const chordEvent = useRef();
@@ -48,13 +50,12 @@ const Chord = ({ pianoSampler, scaleLength }) => {
     return Object.keys(object).find(key => object[key] === value);
   }
 
-  
   const keyNodes = keyCenters.map(key => {
-    return <option key={key.name} value={key.value}>{key.name}</option>
+    return <MenuItem key={key.name} value={key.value}>{key.name}</MenuItem>
   })
   
   const chordNodes = Object.keys(chordTypes).map(chord => {
-    return <option key={chord} value={chord}>{chord}</option>
+    return <MenuItem key={chord} value={chord}>{chord}</MenuItem>
   })
   
   const playChord = () => {
@@ -79,19 +80,20 @@ const Chord = ({ pianoSampler, scaleLength }) => {
   
   return (
     <>
+    
       <h3>Chord</h3>
       <span>Octave</span>
-      <button onClick={() => setOctave(octave + 1)}>Up</button>
-      <button onClick={() => setOctave(octave - 1)}>Down</button>
-      <select id="keys" name="keys" onChange={(handleKeyChange)}>
+      <Button variant="outlined" color="primary" onClick={() => setOctave(octave + 1)}>Up</Button>
+      <Button variant="outlined" color="primary" onClick={() => setOctave(octave - 1)}>Down</Button>
+      <Select id="keys" name="keys" value={keyCenter} onChange={(handleKeyChange)}>
         {keyNodes}
-      </select>
-      <select id="chords" name="chords" onChange={(handleChordTypeChange)}>
+      </Select>
+      <Select id="chords" name="chords" value={chordType.name} onChange={(handleChordTypeChange)}>
         {chordNodes}
-      </select>
-      <button className="note" onClick={() => playChord()}>
+      </Select>
+      <Button variant="outlined" color="primary" className="note" onClick={() => playChord()}>
           PlayChord
-      </button> 
+      </Button> 
     </>
   )
 }

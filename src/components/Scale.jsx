@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
+import Button from '@material-ui/core/Button';
 import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
 import { changeScaleDegree } from '../utils/scaleDegree';
+import { MenuItem, Select } from '@material-ui/core';
 
 
-const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCenter, setScaleType, handleScaleOctave, octave }) => {
+const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCenter, setScaleType, handleScaleOctave, keyCenter, octave }) => {
   const scaleEvent = useRef();
   
   
@@ -47,11 +49,11 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
     
     
     const keyNodes = keyCenters.map(key => {
-      return <option key={key.name} value={key.value}>{key.name}</option>
+      return <MenuItem key={key.name} value={key.value}>{key.name}</MenuItem>
     })
     
     const scaleNodes = Object.keys(scaleTypes).map(chord => {
-      return <option key={chord} value={chord}>{chord}</option>
+      return <MenuItem key={chord} value={chord}>{chord}</MenuItem>
     })
     
     const handleKeyChange = (event) => {
@@ -95,17 +97,17 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
     <>
       <h3>Scale</h3>
       <span>Octave</span>
-      <button onClick={() => handleScaleOctave('up')}>Up</button>
-      <button onClick={() => handleScaleOctave('down')}>Down</button>
-      <select id="keys" name="keys" onChange={(handleKeyChange)}>
+      <Button variant="outlined" color="primary" onClick={() => handleScaleOctave('up')}>Up</Button>
+      <Button variant="outlined" color="primary" onClick={() => handleScaleOctave('down')}>Down</Button>
+      <Select id="keys" name="keys" value={keyCenter} onChange={(handleKeyChange)}>
         {keyNodes}
-      </select>
-      <select id="chords" name="chords" onChange={(handleScaleTypeChange)}>
+      </Select>
+      <Select id="chords" name="chords" onChange={(handleScaleTypeChange)}>
         {scaleNodes}
-      </select>
-      <button className="note" onClick={() => playScale()}>
+      </Select>
+      <Button variant="outlined" color="primary" className="note" onClick={() => playScale()}>
         PlayScale
-      </button>
+      </Button>
       <br/>
       {/* <h4>Start from scale degree</h4>
       <select id="degrees" name="degrees" ref={scaleDegree} defaultValue={1} onChange={(handleDegreeChange)}>
