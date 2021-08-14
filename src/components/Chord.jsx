@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
-import Button from '@material-ui/core/Button';
 import { chordTypes, keyCenters } from '../data/chords'
-import { MenuItem, Select } from '@material-ui/core';
+import { Button, Form, FormSelect } from 'react-bootstrap';
+import '../App.css';
+
 
 
 const Chord = ({ pianoSampler, scaleLength }) => {
@@ -52,7 +53,7 @@ const Chord = ({ pianoSampler, scaleLength }) => {
   }
 
   const keyNodes = keyCenters.map(key => {
-    return <MenuItem key={key.name} value={key.value}>{key.name}</MenuItem>
+    return <option key={key.name} value={key.value}>{key.name}</option>
   })
   
   const chordNodes = Object.keys(chordTypes).map(chord => {
@@ -85,16 +86,16 @@ const Chord = ({ pianoSampler, scaleLength }) => {
     
       <h3>Chord</h3>
       <span>Octave</span>
-      <Button variant="outlined" color="primary" onClick={() => setOctave(octave + 1)}>Up</Button>
-      <Button variant="outlined" color="primary" onClick={() => setOctave(octave - 1)}>Down</Button>
-      <Select id="keys" name="keys" autoWidth value={keyCenter} onChange={(handleKeyChange)}>
+      <Button variant="outline-primary" onClick={() => setOctave(octave + 1)}>Up</Button>
+      <Button variant="outline-primary" onClick={() => setOctave(octave - 1)}>Down</Button>
+      <FormSelect id="keys" name="keys" onChange={(handleKeyChange)}>
         {keyNodes}
-      </Select>
+      </FormSelect>
       {/* this has some shit that isnt working, possibly because the nodes actually make sure to use the key name and the initial state doesnt? */}
-      <select id="chords" name="chords" value={chordType.name} onChange={(handleChordTypeChange)}>
+      <FormSelect id="chords" name="chords" onChange={(handleChordTypeChange)}>
         {chordNodes}
-      </select>
-      <Button variant="outlined" color="primary" className="note" onClick={() => playChord()}>
+      </FormSelect>
+      <Button variant="outline-primary" className="note" onClick={() => playChord()}>
           PlayChord
       </Button> 
     </>

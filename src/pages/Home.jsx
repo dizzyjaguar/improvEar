@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import Chord from '../components/Chord';
 import Scale from '../components/Scale';
+import { Button } from 'react-bootstrap';
 import * as Tone from "tone";
 import Metronome from '../components/Metronome';
 import { scaleTypes } from '../data/scales';
@@ -78,8 +78,8 @@ const Home = () => {
           />
           <br/>
           <p>----------</p>
-          <Button variant="outlined" color="primary" disabled={!isLoaded} onClick={handleClick}>Play</Button>
-          <Button variant="outlined" color="primary" onClick={handleStop}>Stop</Button>
+          <Button variant="outline-primary" disabled={!isLoaded} onClick={handleClick}>Play</Button>
+          <Button variant="outline-primary" onClick={handleStop}>Stop</Button>
           </>
           : <p>loading...</p>
         }

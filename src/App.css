@@ -3,3 +3,7 @@
   text-align: center;
   height: 100vh;
 }
+.App Select {
+  width: auto;
+  display: inline-flex;
+}

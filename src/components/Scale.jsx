@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from "tone";
-import Button from '@material-ui/core/Button';
+import { Button, FormSelect } from 'react-bootstrap';
 import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
 import { changeScaleDegree } from '../utils/scaleDegree';
@@ -97,15 +97,15 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
     <>
       <h3>Scale</h3>
       <span>Octave</span>
-      <Button variant="outlined" color="primary" onClick={() => handleScaleOctave('up')}>Up</Button>
-      <Button variant="outlined" color="primary" onClick={() => handleScaleOctave('down')}>Down</Button>
-      <select id="keys" name="keys" autoWidth value={keyCenter} onChange={(handleKeyChange)}>
+      <Button variant="outline-primary" onClick={() => handleScaleOctave('up')}>Up</Button>
+      <Button variant="outline-primary" onClick={() => handleScaleOctave('down')}>Down</Button>
+      <FormSelect id="keys" name="keys" onChange={(handleKeyChange)}>
         {keyNodes}
-      </select>
-      <select id="chords" name="chords" onChange={(handleScaleTypeChange)}>
+      </FormSelect>
+      <FormSelect id="chords" name="chords" onChange={(handleScaleTypeChange)}>
         {scaleNodes}
-      </select>
-      <Button variant="outlined" color="primary" className="note" onClick={() => playScale()}>
+      </FormSelect>
+      <Button variant="outline-primary" className="note" onClick={() => playScale()}>
         PlayScale
       </Button>
       <br/>
