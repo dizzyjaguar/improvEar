@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { keyCenters } from '../data/chords';
 import { scaleTypes } from '../data/scales';
 import { changeScaleDegree } from '../utils/scaleDegree';
-import { MenuItem, Select } from '@material-ui/core';
+
 
 
 const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCenter, setScaleType, handleScaleOctave, keyCenter, octave }) => {
@@ -28,7 +28,7 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
   // this is still playing at the same time, either write out a bunch of triggerAttackRelease or need to find another way via sequence or pattern but doesnt go to the Transport.
   const playScale = () => {
     const mappedScale = selectedScale.map(note => note._val)
-    console.log(mappedScale)
+    // console.log(mappedScale)
     // this way works, but would not work in real production
     pianoSampler.triggerAttackRelease(mappedScale[0], '16n', Tone.now(), 2.5)
     pianoSampler.triggerAttackRelease(mappedScale[1], '16n', Tone.now() + .3, 2.5)
@@ -49,11 +49,11 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
     
     
     const keyNodes = keyCenters.map(key => {
-      return <MenuItem key={key.name} value={key.value}>{key.name}</MenuItem>
+      return <option key={key.name} value={key.value}>{key.name}</option>
     })
     
     const scaleNodes = Object.keys(scaleTypes).map(chord => {
-      return <MenuItem key={chord} value={chord}>{chord}</MenuItem>
+      return <option key={chord} value={chord}>{chord}</option>
     })
     
     const handleKeyChange = (event) => {
@@ -91,7 +91,7 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
 
   // console.log(scaleDegree.current)
   
-  console.log(selectedScale)
+  // console.log(selectedScale)
   
   return (
     <>
@@ -99,12 +99,12 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
       <span>Octave</span>
       <Button variant="outlined" color="primary" onClick={() => handleScaleOctave('up')}>Up</Button>
       <Button variant="outlined" color="primary" onClick={() => handleScaleOctave('down')}>Down</Button>
-      <Select id="keys" name="keys" value={keyCenter} onChange={(handleKeyChange)}>
+      <select id="keys" name="keys" autoWidth value={keyCenter} onChange={(handleKeyChange)}>
         {keyNodes}
-      </Select>
-      <Select id="chords" name="chords" onChange={(handleScaleTypeChange)}>
+      </select>
+      <select id="chords" name="chords" onChange={(handleScaleTypeChange)}>
         {scaleNodes}
-      </Select>
+      </select>
       <Button variant="outlined" color="primary" className="note" onClick={() => playScale()}>
         PlayScale
       </Button>

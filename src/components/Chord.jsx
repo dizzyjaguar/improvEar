@@ -12,7 +12,8 @@ const Chord = ({ pianoSampler, scaleLength }) => {
   const [duration, setDuration] = useState(2)
   const startingNote = keyCenter.concat(octave.toString());
   const chordEvent = useRef();
-
+  
+  console.log(chordType)
   // console.log(` this is the duration : ${duration}`)
   // console.log(` this is the scalelength : ${scaleLength}`)
   
@@ -55,7 +56,7 @@ const Chord = ({ pianoSampler, scaleLength }) => {
   })
   
   const chordNodes = Object.keys(chordTypes).map(chord => {
-    return <MenuItem key={chord} value={chord}>{chord}</MenuItem>
+    return <option key={chord} value={chord}>{chord}</option>
   })
   
   const playChord = () => {
@@ -77,7 +78,8 @@ const Chord = ({ pianoSampler, scaleLength }) => {
     
     setChordType(chordTypes[value]);
   };
-  
+
+  console.log(chordNodes)
   return (
     <>
     
@@ -85,12 +87,13 @@ const Chord = ({ pianoSampler, scaleLength }) => {
       <span>Octave</span>
       <Button variant="outlined" color="primary" onClick={() => setOctave(octave + 1)}>Up</Button>
       <Button variant="outlined" color="primary" onClick={() => setOctave(octave - 1)}>Down</Button>
-      <Select id="keys" name="keys" value={keyCenter} onChange={(handleKeyChange)}>
+      <Select id="keys" name="keys" autoWidth value={keyCenter} onChange={(handleKeyChange)}>
         {keyNodes}
       </Select>
-      <Select id="chords" name="chords" value={chordType.name} onChange={(handleChordTypeChange)}>
+      {/* this has some shit that isnt working, possibly because the nodes actually make sure to use the key name and the initial state doesnt? */}
+      <select id="chords" name="chords" value={chordType.name} onChange={(handleChordTypeChange)}>
         {chordNodes}
-      </Select>
+      </select>
       <Button variant="outlined" color="primary" className="note" onClick={() => playChord()}>
           PlayChord
       </Button> 
