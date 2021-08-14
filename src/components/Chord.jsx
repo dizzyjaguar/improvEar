@@ -14,7 +14,6 @@ const Chord = ({ pianoSampler, scaleLength }) => {
   const startingNote = keyCenter.concat(octave.toString());
   const chordEvent = useRef();
   
-  console.log(chordType)
   // console.log(` this is the duration : ${duration}`)
   // console.log(` this is the scalelength : ${scaleLength}`)
   
@@ -80,7 +79,6 @@ const Chord = ({ pianoSampler, scaleLength }) => {
     setChordType(chordTypes[value]);
   };
 
-  console.log(chordNodes)
   return (
     <>
     
@@ -91,7 +89,6 @@ const Chord = ({ pianoSampler, scaleLength }) => {
       <FormSelect id="keys" name="keys" onChange={(handleKeyChange)}>
         {keyNodes}
       </FormSelect>
-      {/* this has some shit that isnt working, possibly because the nodes actually make sure to use the key name and the initial state doesnt? */}
       <FormSelect id="chords" name="chords" onChange={(handleChordTypeChange)}>
         {chordNodes}
       </FormSelect>
