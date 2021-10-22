@@ -32,7 +32,7 @@ const Metronome = ({ scaleLength }) => {
   
   return (
     <>
-      <h3>Tempo</h3>
+      <h3 className="component-titles">Tempo</h3>
       <p>{theTempo}</p>
       <p>{bars}</p>
       <Button variant="outline-primary" onClick={() => setTempoState(tempoState - 1)}>lower</Button>

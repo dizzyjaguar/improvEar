@@ -81,8 +81,7 @@ const Chord = ({ pianoSampler, scaleLength }) => {
 
   return (
     <>
-    
-      <h3>Chord</h3>
+      <h3 className="component-titles">Chord</h3>
       <span>Octave</span>
       <Button variant="outline-primary" onClick={() => setOctave(octave + 1)}>Up</Button>
       <Button variant="outline-primary" onClick={() => setOctave(octave - 1)}>Down</Button>

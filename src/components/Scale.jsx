@@ -95,11 +95,11 @@ const Scale = ({ pianoSampler, selectedScale, scaleType, startingNote, setKeyCen
   
   return (
     <>
-      <h3>Scale</h3>
+      <h3 className="component-titles">Scale</h3>
       <span>Octave</span>
       <Button variant="outline-primary" onClick={() => handleScaleOctave('up')}>Up</Button>
       <Button variant="outline-primary" onClick={() => handleScaleOctave('down')}>Down</Button>
-      <FormSelect id="keys" name="keys" onChange={(handleKeyChange)}>
+      <FormSelect id="keys" className="KeySelect" name="keys" onChange={(handleKeyChange)}>
         {keyNodes}
       </FormSelect>
       <FormSelect id="chords" name="chords" onChange={(handleScaleTypeChange)}>

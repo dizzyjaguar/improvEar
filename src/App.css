@@ -1,6 +1,5 @@
 
 .App {
-  font-family: sans-serif;
   text-align: center;
   height: 75vh;
   margin: 5rem 0 0 0;
@@ -13,8 +12,20 @@ html {
   background-color: #e4fde1;
 }
 
+span {
+  font-weight: 700;
+}
+
+p {
+  font-weight: 600;
+}
+
+.component-titles {
+  font-weight: 700;
+}
+
 .App Select {
-  width: auto;
+  width: 12rem;
   display: inline-flex;
   background-color: #e4fde1;
   border-color: #941C2F;
@@ -34,6 +45,10 @@ html {
 
 .App Button:active {
   border-color: #941C2F;
+}
+
+#keys {
+  width: 6rem;
 }
 
 /* color pallete */
