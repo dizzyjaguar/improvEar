@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as Tone from 'tone'
-import { chordTypes, keyCenters } from '../data/chords'
+import { chordTypes, keyCenters } from '../../data/chords'
 import { Button, Form, FormSelect } from 'react-bootstrap'
 import '../App.css'
+import useToneEvent from './useToneEvent'
+
+type Options = ConstructorParameters<typeof Tone.ToneEvent>[0];
 
 const Chord = ({ pianoSampler, scaleLength }: any) => {
   const [keyCenter, setKeyCenter] = useState('C')
@@ -10,7 +13,10 @@ const Chord = ({ pianoSampler, scaleLength }: any) => {
   const [chordType, setChordType] = useState(chordTypes.major)
   const [duration, setDuration] = useState(2)
   const startingNote = keyCenter.concat(octave.toString())
-  const chordEvent = useRef()
+  const chordEvent = useToneEvent()
+  // const chordEvent = useRef<Tone.ToneEvent>(new Tone.ToneEvent(
+  //   options as Options
+  // ).toDestination())
 
   // console.log(` this is the duration : ${duration}`)
   // console.log(` this is the scalelength : ${scaleLength}`)
