@@ -1,13 +1,11 @@
-'use client'
-
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import Chord from '@/components/Chord'
-import Scale from '@/components/Scale'
-import Metronome from '@/components/Metronome'
-import { scaleTypes } from '@/data/scales'
+import Chord from '../components/Chord'
+import Scale from '../components/Scale'
+import Metronome from '../components/Metronome'
+import { scaleTypes } from '../data/scales'
 import * as Tone from 'tone'
-import useSampler from '@/hooks/useSampler'
+import useSampler from '../hooks/useSampler'
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false)
@@ -15,8 +13,8 @@ const Home = () => {
   const [scaleOctave, setScaleOctave] = useState(4)
   const [scaleType, setScaleType] = useState(scaleTypes.major)
   const scaleStartingNote = scaleKeyCenter.concat(scaleOctave.toString())
-  // const selectedScale = Tone.Frequency(scaleStartingNote).harmonize(scaleType)
-  // const scaleLength = selectedScale.length
+  const selectedScale = Tone.Frequency(scaleStartingNote).harmonize(scaleType)
+  const scaleLength = selectedScale.length
 
   const sampler = useSampler({
       urls: {
@@ -45,12 +43,13 @@ const Home = () => {
     <>
       {loaded ? (
         <>
-          {/* <Metronome scaleLength={scaleLength} /> */}
+        <button className='bg-orange-200 text-cyan-400'>tailwind</button>
+          <Metronome scaleLength={scaleLength} />
           <br />
-          {/* <Chord pianoSampler={pianoSampler} scaleLength={scaleLength} /> */}
+          <Chord pianoSampler={sampler} scaleLength={scaleLength} />
           <br />
-          {/* <Scale
-            pianoSampler={pianoSampler}
+          <Scale
+            pianoSampler={sampler}
             keyCenter={scaleKeyCenter}
             setKeyCenter={setScaleKeyCenter}
             selectedScale={selectedScale}
@@ -59,7 +58,7 @@ const Home = () => {
             setScaleType={setScaleType}
             handleScaleOctave={handleScaleOctave}
             octave={setScaleOctave}
-          /> */}
+          />
           <br />
           <p>----------</p>
           {/* <Button variant="outline-primary" disabled={!loaded} onClick={start}>

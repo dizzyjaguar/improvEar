@@ -2,31 +2,32 @@
   "name": "improv-ear",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@types/node": "^20.4.4",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
-    "autoprefixer": "^10.4.14",
+    "@vitejs/plugin-react": "^4.0.4",
     "bootstrap": "^5.0.2",
     "eslint": "^8.45.0",
-    "eslint-config-next": "^13.4.12",    
-    "postcss": "^8.4.27",
+    "eslint-config-next": "^13.4.12",
     "react": "^18.2.0",
     "react-bootstrap": "^2.0.0-beta.4",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.3",
     "tone": "^14.8.49",
     "typescript": "^5.1.6",
-    "vite": "^4.4.8",
-    "@vitejs/plugin-react": "^4.0.4"
+    "vite": "^4.4.8"
   },
   "devDependencies": {
-    "prettier": "3.0.0"
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "prettier": "3.0.0",
+    "tailwindcss": "^3.3.3"
   }
 }
