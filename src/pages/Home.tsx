@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import * as Tone from 'tone'
 import Metronome from '../components/Metronome'
 import { scaleTypes } from '../data/scales'
+import useSampler from '../hooks/useSampler'
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -15,16 +16,28 @@ const Home = () => {
   const selectedScale = Tone.Frequency(scaleStartingNote).harmonize(scaleType)
   const scaleLength = selectedScale.length
 
-  const pianoSampler = new Tone.Sampler({
-    urls: {
-      C4: 'C4.mp3',
-      'D#4': 'Ds4.mp3',
-      'F#4': 'Fs4.mp3',
-      A4: 'A4.mp3',
-    },
-    release: 1,
-    baseUrl: 'https://tonejs.github.io/audio/salamander/',
-  }).toDestination()
+  // const pianoSampler = new Tone.Sampler({
+  //   urls: {
+  //     C4: 'C4.mp3',
+  //     'D#4': 'Ds4.mp3',
+  //     'F#4': 'Fs4.mp3',
+  //     A4: 'A4.mp3',
+  //   },
+  //   release: 1,
+  //   baseUrl: 'https://tonejs.github.io/audio/salamander/',
+  // }).toDestination()
+
+  const pianoSampler = useSampler({
+      urls: {
+        C4: 'C4.mp3',
+        'D#4': 'Ds4.mp3',
+        'F#4': 'Fs4.mp3',
+        A4: 'A4.mp3',
+      },
+      release: 1,
+      baseUrl: 'https://tonejs.github.io/audio/salamander/',
+    })
+    
 
   Tone.loaded().then(() => {
     setIsLoaded(true)
@@ -40,7 +53,7 @@ const Home = () => {
     Tone.Transport.stop()
   }
 
-  const handleScaleOctave = direction => {
+  const handleScaleOctave = (direction: 'up' | 'down') => {
     if (direction === 'up') {
       setScaleOctave(scaleOctave + 1)
     } else if (direction === 'down') {
