@@ -10,23 +10,20 @@ export const chordTypes = {
   dominant7: [0, 4, 7, 10],
   minor7flat5: [0, 3, 6, 10],
   dominant7flat5: [0, 4, 6, 10],
-  dominant7sharp5: [0, 4, 8, 10]
-};
+  dominant7sharp5: [0, 4, 8, 10],
+}
 
 export const keyCenters = [
-  {name: 'C', value: 'C'},
-  {name: 'C#/Db', value: 'C#'},
-  {name: 'D', value: 'D'},
-  {name: 'D#/Eb', value: 'D#'},
-  {name: 'E', value: 'E'},
-  {name: 'F', value: 'F'},
-  {name: 'F#/Gb', value: 'F#'},
-  {name: 'G', value: 'G'},
-  {name: 'G#/Ab', value: 'G#'},
-  {name: 'A', value: 'A'},
-  {name: 'A#/Bb', value: 'A#'},
-  {name: 'B', value: 'B'}
-];
-  
-  
-
+  { name: 'C', value: 'C' },
+  { name: 'C#/Db', value: 'C#' },
+  { name: 'D', value: 'D' },
+  { name: 'D#/Eb', value: 'D#' },
+  { name: 'E', value: 'E' },
+  { name: 'F', value: 'F' },
+  { name: 'F#/Gb', value: 'F#' },
+  { name: 'G', value: 'G' },
+  { name: 'G#/Ab', value: 'G#' },
+  { name: 'A', value: 'A' },
+  { name: 'A#/Bb', value: 'A#' },
+  { name: 'B', value: 'B' },
+]

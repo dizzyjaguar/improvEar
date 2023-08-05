@@ -1,4 +1,3 @@
-
 .App {
   text-align: center;
   height: 75vh;
@@ -28,23 +27,23 @@ p {
   width: 12rem;
   display: inline-flex;
   background-color: #e4fde1;
-  border-color: #941C2F;
-  color: #941C2F;
+  border-color: #941c2f;
+  color: #941c2f;
 }
 
 .App Button {
-  color: #941C2F;
-  border-color: #941C2F;
+  color: #941c2f;
+  border-color: #941c2f;
 }
 
 .App Button:hover {
-  background-color: #941C2F;
-  border-color: #941C2F;
+  background-color: #941c2f;
+  border-color: #941c2f;
   color: black;
 }
 
 .App Button:active {
-  border-color: #941C2F;
+  border-color: #941c2f;
 }
 
 #keys {
