@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import * as Tone from 'tone'
 import { chordTypes, keyCenters } from '../../data/chords'
 import { Button, Form, FormSelect } from 'react-bootstrap'
-import '../App.css'
-import useToneEvent from './useToneEvent'
+import '../../App.css'
+import useToneEvent from '@/hooks/useToneEvent'
 
 type Options = ConstructorParameters<typeof Tone.ToneEvent>[0];
 
