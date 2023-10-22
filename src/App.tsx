@@ -4,7 +4,7 @@ import Home from './pages/Home'
 const App = () => {
   //Move everything over to using Tailwind from the current index.css
   return (
-    <div>
+    <div className={`w-full h-screen`}>
       <Home />
     </div>
   )
