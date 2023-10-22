@@ -9,7 +9,37 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    // error page should appear on the white box
     errorElement: <ErrorPage />,
+    children: [
+      {
+        // about page
+      },
+      {
+        // donate page
+      },
+      {
+        // help page
+      },
+      {
+        // contact page
+      },
+    ],
+  },
+  {
+    path: 'player',
+    // error page should appear over the player/menu
+    children: [
+      {
+        // note menu
+      },
+      {
+        // chord menu
+      },
+      {
+        // time menu
+      },
+    ],
   },
 ])
 

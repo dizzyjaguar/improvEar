@@ -1,3 +1,3 @@
 export default function Root() {
-  return <></>
+  return <div className={`w-full h-screen`}></div>
 }
