@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Button } from 'react-bootstrap'
 import Chord from '../components/Chord'
 import Scale from '../components/Scale'
 import Metronome from '../components/Metronome'
@@ -17,18 +16,18 @@ const Home = () => {
   const scaleLength = selectedScale.length
 
   const sampler = useSampler({
-      urls: {
-        C4: 'C4.mp3',
-        'D#4': 'Ds4.mp3',
-        'F#4': 'Fs4.mp3',
-        A4: 'A4.mp3',
-      },
-      onload: () => {
-        setLoaded(true)
-      },
-      release: 1,
-      baseUrl: 'https://tonejs.github.io/audio/salamander/',
-    })
+    urls: {
+      C4: 'C4.mp3',
+      'D#4': 'Ds4.mp3',
+      'F#4': 'Fs4.mp3',
+      A4: 'A4.mp3',
+    },
+    onload: () => {
+      setLoaded(true)
+    },
+    release: 1,
+    baseUrl: 'https://tonejs.github.io/audio/salamander/',
+  })
 
   const handleScaleOctave = (direction: 'up' | 'down') => {
     if (direction === 'up') {
@@ -43,7 +42,7 @@ const Home = () => {
     <>
       {loaded ? (
         <>
-        <button className='bg-orange-200 text-cyan-400'>tailwind</button>
+          <button className="bg-orange-200 text-cyan-400">tailwind</button>
           <Metronome scaleLength={scaleLength} />
           <br />
           <Chord pianoSampler={sampler} scaleLength={scaleLength} />
@@ -64,9 +63,7 @@ const Home = () => {
           {/* <Button variant="outline-primary" disabled={!loaded} onClick={start}>
             Play
           </Button> */}
-          <Button variant="outline-primary" onClick={stop}>
-            Stop
-          </Button>
+          <button onClick={stop}>Stop</button>
         </>
       ) : (
         <p>loading...</p>
