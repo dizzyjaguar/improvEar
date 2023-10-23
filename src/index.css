@@ -16,7 +16,11 @@
 
 @layer components {
   .h1 {
-    @apply text-3xl sm:text-5xl lg:text-6xl;
+    @apply font-bold text-3xl sm:text-6xl;
+  }
+
+  .h3 {
+    @apply font-normal text-base sm:text-2xl;
   }
 }
 
