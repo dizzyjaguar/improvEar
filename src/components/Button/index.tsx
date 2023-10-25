@@ -28,7 +28,7 @@ export default function Button({
 
   const sizeVariants = {
     sm: '',
-    md: 'px-8 py-4 text-2xl font-semibold tracking-wider rounded-md',
+    md: ' px-4 py-2 md:px-8 md:py-4  text-2xl font-semibold tracking-wider rounded-md',
     lg: '',
   }
 
