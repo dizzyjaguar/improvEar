@@ -83,6 +83,16 @@ export default {
           950: 'oklch(27.11% 0.08 38.43)',
         },
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-1deg)' },
+          '50%': { transform: 'rotate(1deg)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 200ms ease-in-out',
+        shrink: 'scale(0.8) 200ms eas-in-out',
+      },
     },
   },
   plugins: [],
