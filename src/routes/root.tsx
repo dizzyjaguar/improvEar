@@ -10,7 +10,8 @@ export default function Root() {
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
   const [rotate, setRotate] = useState(0)
-  console.log(location)
+
+  // change icon location route change
   useEffect(() => {
     // if on landing page
     if (!location.state) {
@@ -23,16 +24,17 @@ export default function Root() {
   }, [location])
 
   return (
-    <div
+    <motion.div
       className={`w-full h-screen p-10 rainbow-gradient flex justify-center items-center`}
     >
-      <div
+      <motion.div
         className={`bg-white w-screen max-w-2xl h-3/5 rounded-md shadow-md pt-16 relative`}
       >
         <motion.div
           className={`w-full flex justify-center items-center space-x-4 absolute`}
-          animate={{ x, y, rotate }}
-          transition={{ type: 'spring', duration: 2 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, x, y, rotate }}
+          transition={{ type: 'spring', duration: 1.5 }}
         >
           <Link to={'/'}>
             <Sun />
@@ -45,7 +47,7 @@ export default function Root() {
           </Link>
         </motion.div>
         <Outlet />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
