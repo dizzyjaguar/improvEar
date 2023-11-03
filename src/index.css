@@ -18,9 +18,11 @@
   .h1 {
     @apply font-bold text-3xl sm:text-6xl;
   }
-
   .h3 {
     @apply font-normal text-base sm:text-2xl;
+  }
+  .footer-link {
+    @apply font-light text-sm sm:text-base hover:opacity-50;
   }
 }
 
