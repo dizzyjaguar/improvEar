@@ -24,10 +24,10 @@ export default function Root() {
   }, [location])
 
   return (
-    <motion.div
+    <div
       className={`w-full h-screen p-10 rainbow-gradient flex justify-center items-center`}
     >
-      <motion.div
+      <div
         className={`bg-white w-screen max-w-2xl h-3/5 rounded-md shadow-md pt-16 relative`}
       >
         <motion.div
@@ -47,7 +47,7 @@ export default function Root() {
           </Link>
         </motion.div>
         <Outlet />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
