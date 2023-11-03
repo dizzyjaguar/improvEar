@@ -28,7 +28,7 @@ export default function Root() {
       className={`w-full h-screen p-10 rainbow-gradient flex justify-center items-center`}
     >
       <div
-        className={`bg-white w-screen max-w-2xl h-3/5 rounded-md shadow-md pt-16 relative`}
+        className={`flex flex-col bg-white w-screen max-w-2xl h-3/5 rounded-md shadow-md pt-16 pb-4 relative justify-between`}
       >
         <motion.div
           className={`w-full flex justify-center items-center space-x-4 absolute`}
@@ -47,6 +47,24 @@ export default function Root() {
           </Link>
         </motion.div>
         <Outlet />
+        <div className={`flex flex-row justify-between px-8`}>
+          <div className={`flex flex-row justify-around space-x-12`}>
+            <Link to={'/about'} state={{ iconLocation: 'top left' }}>
+              <p className={`footer-link`}>About</p>
+            </Link>
+            <Link to={'/donate'} state={{ iconLocation: 'top left' }}>
+              <p className={`footer-link`}>Donate</p>
+            </Link>
+          </div>
+          <div className={`flex flex-row justify-around space-x-12`}>
+            <Link to={'/help'} state={{ iconLocation: 'top left' }}>
+              <p className={`footer-link`}>Help</p>
+            </Link>
+            <Link to={'/contact'} state={{ iconLocation: 'top left' }}>
+              <p className={`footer-link`}>Contact</p>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )
