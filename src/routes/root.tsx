@@ -4,12 +4,29 @@ import Air from '../components/icons/Air'
 import Sun from '../components/icons/Sun'
 import Water from '../components/icons/Water'
 import { useEffect, useState } from 'react'
+import resolveConfig from 'tailwindcss/resolveConfig'
+// @ts-ignore
+import tailwindConfig from '../../tailwind.config.js'
+
+interface Breakpoints {
+  sm: string
+  md: string
+  lg: string
+  xl: string
+  '2xl': string
+}
+const fullConfig = resolveConfig(tailwindConfig)
 
 export default function Root() {
   let location = useLocation()
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
   const [rotate, setRotate] = useState(0)
+  const theme = fullConfig.theme
+  const breakpoints = theme.screens
+  // @ts-ignore
+  const { sm, md, lg, xl }: Breakpoints = breakpoints
+  const xxl = breakpoints[`2xl`]
 
   // change icon location route change
   useEffect(() => {
