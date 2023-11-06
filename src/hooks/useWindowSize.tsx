@@ -1,3 +1,5 @@
+import React from 'react'
+
 interface WindowSize {
   width: number
   height: number
@@ -24,3 +26,5 @@ const useWindowSize = () => {
 
   return windowSize
 }
+
+export default useWindowSize
