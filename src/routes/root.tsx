@@ -4,29 +4,16 @@ import Air from '../components/icons/Air'
 import Sun from '../components/icons/Sun'
 import Water from '../components/icons/Water'
 import { useEffect, useState } from 'react'
-import resolveConfig from 'tailwindcss/resolveConfig'
-// @ts-ignore
-import tailwindConfig from '../../tailwind.config.js'
-
-interface Breakpoints {
-  sm: string
-  md: string
-  lg: string
-  xl: string
-  '2xl': string
-}
-const fullConfig = resolveConfig(tailwindConfig)
+import useWindowSize from '../hooks/useWindowSize.js'
+import { useBreakpoints } from '../hooks/useBreakpoints.js'
 
 export default function Root() {
   let location = useLocation()
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
   const [rotate, setRotate] = useState(0)
-  const theme = fullConfig.theme
-  const breakpoints = theme.screens
-  // @ts-ignore
-  const { sm, md, lg, xl }: Breakpoints = breakpoints
-  const xxl = breakpoints[`2xl`]
+  const windowSize = useWindowSize()
+  const { sm, md, lg, xl, xxl } = useBreakpoints()
 
   // change icon location route change
   useEffect(() => {
@@ -35,10 +22,10 @@ export default function Root() {
       setX(0)
       setY(145)
     } else if (location.state.iconLocation === 'top left') {
-      setX(-250)
-      setY(-40)
+      // this doesnt work because they need to be compared when both are Numbers, not Strings
+      windowSize.width >= sm ? (setX(-250), setY(-40)) : (setX(0), setY(-40))
     }
-  }, [location])
+  }, [location, windowSize])
 
   return (
     <div
