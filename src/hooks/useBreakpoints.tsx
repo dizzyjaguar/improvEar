@@ -1,6 +1,7 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
 // @ts-ignore
 import tailwindConfig from '../../tailwind.config.js'
+import { breakpointToNumber } from '../utils/breakpointToNumber.js'
 
 interface Breakpoints {
   sm: number
@@ -10,11 +11,7 @@ interface Breakpoints {
   xxl: number
 }
 const fullConfig = resolveConfig(tailwindConfig)
-
-export function breakpointToNumber(tailwindBreakpoint: string): number {
-  const breakpointNumber = Number(tailwindBreakpoint.slice(0, -2))
-  return breakpointNumber
-}
+// write a test for this
 
 export const useBreakpoints = (): Breakpoints => {
   const theme = fullConfig.theme

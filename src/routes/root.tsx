@@ -22,7 +22,6 @@ export default function Root() {
       setX(0)
       setY(145)
     } else if (location.state.iconLocation === 'top left') {
-      // this doesnt work because they need to be compared when both are Numbers, not Strings
       windowSize.width >= sm ? (setX(-250), setY(-40)) : (setX(0), setY(-40))
     }
   }, [location, windowSize])
