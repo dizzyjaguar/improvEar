@@ -28,7 +28,7 @@
     @apply font-light text-sm md:text-base hover:opacity-50;
   }
   .quote {
-    @apply font-light text-gray-500 text-xs sm:text-sm leading-[1.5rem] sm:leading-[2rem];
+    @apply font-light text-gray-500 text-xs sm:text-sm leading-[1.25rem] sm:leading-[2rem];
   }
 }
 
