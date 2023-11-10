@@ -16,7 +16,10 @@ export default function About() {
         animate="visible"
         variants={{ visible: { transition: { staggerChildren: 1 } } }}
       >
-        <motion.h2 variants={itemVariants} className={`h2 mb-10 text-left`}>
+        <motion.h2
+          variants={itemVariants}
+          className={`h2 mb-7 sm:mb-10 text-left`}
+        >
           ImprovEar is a tool for musicians <br /> who want to improve their{' '}
           <motion.span className="text-cornflower-lilac-300">ear</motion.span>
         </motion.h2>
@@ -31,7 +34,7 @@ export default function About() {
 
         <motion.p
           variants={itemVariants}
-          className={`mt-10 quote leading-[2rem] w-2/3`}
+          className={`mt-5 md:mt-10 quote md:w-2/3`}
         >
           “Music is your own experience, your own thoughts, your wisdom. If you
           don’t live it, it won’t come out of your horn. They teach you there’s

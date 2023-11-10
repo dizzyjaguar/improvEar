@@ -22,7 +22,7 @@ export default function Root() {
       setX(0)
       setY(145)
     } else if (location.state.iconLocation === 'top left') {
-      windowSize.width >= sm ? (setX(-250), setY(-40)) : (setX(0), setY(-40))
+      windowSize.width >= md ? (setX(-250), setY(-40)) : (setX(0), setY(-40))
     }
   }, [location, windowSize])
 
@@ -51,7 +51,9 @@ export default function Root() {
         </motion.div>
         <Outlet />
         <div className={`flex flex-row justify-between px-8`}>
-          <div className={`flex flex-row justify-around space-x-12`}>
+          <div
+            className={`flex flex-row justify-around space-x-4 md:space-x-12`}
+          >
             <Link to={'/about'} state={{ iconLocation: 'top left' }}>
               <p className={`footer-link`}>About</p>
             </Link>
@@ -59,7 +61,9 @@ export default function Root() {
               <p className={`footer-link`}>Donate</p>
             </Link>
           </div>
-          <div className={`flex flex-row justify-around space-x-12`}>
+          <div
+            className={`flex flex-row justify-around space-x-4 md:space-x-12`}
+          >
             <Link to={'/help'} state={{ iconLocation: 'top left' }}>
               <p className={`footer-link`}>Help</p>
             </Link>
