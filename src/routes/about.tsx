@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const visible = { opacity: 1, transition: { duration: 2.5 } }
 
@@ -21,14 +21,21 @@ export default function About() {
           className={`h2 mb-7 sm:mb-10 text-left`}
         >
           ImprovEar is a tool for musicians <br /> who want to improve their{' '}
-          <motion.span className="text-cornflower-lilac-300">ear</motion.span>
+          <motion.span
+            variants={itemVariants}
+            className="text-cornflower-lilac-300"
+          >
+            ear
+          </motion.span>
         </motion.h2>
         <motion.h3
           variants={itemVariants}
           className={` pl-8 sm:pl-16 h3 text-left`}
         >
           Inspired by{' '}
-          <motion.span className="text-calico-300">beautiful</motion.span>{' '}
+          <motion.span variants={itemVariants} className="text-calico-300">
+            beautiful
+          </motion.span>{' '}
           devices <br /> that exist in the physical world.
         </motion.h3>
 

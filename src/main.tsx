@@ -6,6 +6,7 @@ import Root from './routes/root'
 import ErrorPage from './pages/ErrorPage'
 import About from './routes/about'
 import Landing from './components/Landing'
+import Donate from './routes/donate'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        // donate page
+        path: '/donate',
+        element: <Donate />,
       },
       {
         // help page

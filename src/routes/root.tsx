@@ -26,6 +26,7 @@ export default function Root() {
     }
   }, [location, windowSize])
 
+  // add in a theme changer button that changes it from a rainbow background to a mono color background
   return (
     <div
       className={`w-full h-screen p-10 rainbow-gradient flex justify-center items-center`}
