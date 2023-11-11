@@ -6,7 +6,7 @@ export default function Landing() {
   const navigate = useNavigate()
 
   return (
-    <AnimatePresence mode='sync'>
+    <AnimatePresence mode="sync">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -31,6 +31,8 @@ export default function Landing() {
             onClick={() =>
               navigate('about', { state: { iconLocation: 'top left' } })
             }
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.99 }}
           >
             Start
           </Button>

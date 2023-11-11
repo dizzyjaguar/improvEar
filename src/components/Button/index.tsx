@@ -1,4 +1,5 @@
-import { ReactNode, useState } from 'react'
+import { motion } from 'framer-motion'
+import React, { ReactNode } from 'react'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode | undefined
@@ -8,40 +9,31 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg'
 }
 
-export default function Button({
-  children,
-  color = 'black',
-  size = 'md',
-  ...props
-}: ButtonProps) {
-  const onClick = props.onClick
-  const [effect, setEffect] = useState(false)
-  const handleAnimation = () => setEffect(true)
-  function handleClick() {
-    handleAnimation()
-    !!onClick && onClick()
+// need to figure out the best way to turn this into a motion component
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, color = 'black', size = 'md', ...props }: ButtonProps, ref) => {
+    const colorVariants = {
+      black: 'bg-black hover:bg-gray-800 text-white',
+    }
+
+    const sizeVariants = {
+      sm: '',
+      md: ' px-4 py-2 md:px-8 md:py-4  text-2xl font-semibold tracking-wider rounded-md',
+      lg: '',
+    }
+
+    return (
+      <button
+        className={`${colorVariants[color]} ${sizeVariants[size]}`}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    )
   }
+)
 
-  const colorVariants = {
-    black: 'bg-black hover:bg-gray-800 text-white',
-  }
+const MotionButton = motion(Button)
 
-  const sizeVariants = {
-    sm: '',
-    md: ' px-4 py-2 md:px-8 md:py-4  text-2xl font-semibold tracking-wider rounded-md',
-    lg: '',
-  }
-
-  const defaultClasses = `${effect && 'animate-wiggle'}`
-
-  return (
-    <button
-      {...props}
-      className={`${colorVariants[color]} ${sizeVariants[size]} ${defaultClasses}`}
-      onClick={handleClick}
-      onAnimationEnd={() => setEffect(false)}
-    >
-      {children}
-    </button>
-  )
-}
+export default MotionButton
