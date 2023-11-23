@@ -29,7 +29,7 @@ export default function Help() {
           className={`h2 mb-7 sm:mb-24 text-left pl-6 sm:pl-10`}
         >
           How can we
-          <motion.span variants={itemVariants} className="text-blazeOrange-600">
+          <motion.span variants={itemVariants} className="text-blaze-orange-600">
             {' '}
             help
           </motion.span>
