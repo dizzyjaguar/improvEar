@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        // pink
         'cornflower-lilac': {
           50: 'oklch(97.05% 0.01 17.38)',
           100: 'oklch(93.43% 0.03 17.76)',
@@ -17,6 +18,7 @@ export default {
           900: 'oklch(39.84% 0.14 26.27)',
           950: 'oklch(25.95% 0.09 26.67)',
         },
+        // gold
         calico: {
           50: 'oklch(97.95% 0.01 87.47)',
           100: 'oklch(95.05% 0.02 85.94)',
@@ -30,6 +32,7 @@ export default {
           900: 'oklch(40.35% 0.06 49.05)',
           950: 'oklch(26.51% 0.04 45.07)',
         },
+        // green
         envy: {
           50: 'oklch(97.63% 0.00 157.18)',
           100: 'oklch(92.38% 0.01 158.23)',
@@ -42,7 +45,7 @@ export default {
           800: 'oklch(35.56% 0.03 161.44)',
           900: 'oklch(32.45% 0.02 161.38)',
           950: 'oklch(22.65% 0.02 160.47)',
-        },
+        }, // purple
         blackcurrant: {
           50: 'oklch(97.13% 0.01 286.30)',
           100: 'oklch(93.19% 0.01 290.30)',
@@ -56,6 +59,7 @@ export default {
           900: 'oklch(41.02% 0.05 298.34)',
           950: 'oklch(34.52% 0.04 299.73)',
         },
+        //
         alabaster: {
           50: 'oklch(97.91% 0.00 NaN)',
           100: 'oklch(95.21% 0.00 NaN)',
@@ -68,8 +72,8 @@ export default {
           800: 'oklch(39.42% 0.00 NaN)',
           900: 'oklch(36.00% 0.00 NaN)',
           950: 'oklch(28.09% 0.00 NaN)',
-        },
-        blazeOrange: {
+        }, // orange
+        'blaze-orange': {
           50: 'oklch(98.16% 0.02 79.35)',
           100: 'oklch(95.59% 0.04 78.59)',
           200: 'oklch(90.77% 0.08 74.92)',
