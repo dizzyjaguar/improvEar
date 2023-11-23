@@ -17,8 +17,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     const sizeVariants = {
-      sm: '',
-      md: ' px-4 py-2 md:px-8 md:py-4  text-2xl font-semibold tracking-wider rounded-md',
+      sm: 'px-2 py-1 md:px-4 md:py-2  text-lg font-semibold tracking-wider rounded-md',
+      md: 'px-4 py-2 md:px-8 md:py-4  text-2xl font-semibold tracking-wider rounded-md',
       lg: '',
     }
 
