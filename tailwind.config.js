@@ -69,7 +69,7 @@ export default {
           900: 'oklch(36.00% 0.00 NaN)',
           950: 'oklch(28.09% 0.00 NaN)',
         },
-        'blaze-orange': {
+        blazeOrange: {
           50: 'oklch(98.16% 0.02 79.35)',
           100: 'oklch(95.59% 0.04 78.59)',
           200: 'oklch(90.77% 0.08 74.92)',
