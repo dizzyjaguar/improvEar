@@ -7,6 +7,8 @@ import ErrorPage from './pages/ErrorPage'
 import About from './routes/about'
 import Landing from './components/Landing'
 import Donate from './routes/donate'
+import Help from './routes/help'
+import { ChakraProvider } from '@chakra-ui/react'
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,8 @@ const router = createBrowserRouter([
         element: <Donate />,
       },
       {
-        // help page
+        path: '/help',
+        element: <Help />,
       },
       {
         // contact page
@@ -54,6 +57,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   </React.StrictMode>
 )
