@@ -35,7 +35,7 @@ export default function Root() {
         IF its less than 800px height then the conatiner needs to fit 90%height
       */}
       <div
-        className={`flex flex-col bg-white w-screen max-w-2xl min-h-[600px] h-3/5 rounded-md shadow-md pt-16 pb-4 relative justify-between`}
+        className={`flex flex-col bg-alabaster-50 w-screen max-w-2xl min-h-[600px] h-3/5 rounded-md shadow-md pt-16 pb-4 relative justify-between`}
       >
         <motion.div
           className={`w-full flex justify-center items-center space-x-4 absolute`}
