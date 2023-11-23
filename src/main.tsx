@@ -9,6 +9,7 @@ import Landing from './components/Landing'
 import Donate from './routes/donate'
 import Help from './routes/help'
 import { ChakraProvider } from '@chakra-ui/react'
+import Contact from './routes/contact'
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
         element: <Help />,
       },
       {
-        // contact page
+        path: '/contact',
+        element: <Contact />,
       },
     ],
   },
