@@ -13,10 +13,15 @@ import tailwindConfig from '../../tailwind.config.js'
 export default function Root() {
   const fullConfig = resolveConfig(tailwindConfig)
   const backgroundColors = fullConfig.theme.backgroundColor
-  console.log(fullConfig.theme)
+  // console.log(fullConfig.theme)
+  const borderRadius = fullConfig.theme.borderRadius
+  console.log(borderRadius)
   let location = useLocation()
   const [currentBgColor, setCurrentBgColor] = useState(
     backgroundColors.alabaster[50]
+  )
+  const [currentBorderRadius, setCurrentBorderRadius] = useState(
+    borderRadius.md
   )
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
@@ -37,9 +42,11 @@ export default function Root() {
 
   useEffect(() => {
     location.pathname === '/player'
-      ? setCurrentBgColor(backgroundColors.alabaster[500])
-      : setCurrentBgColor(backgroundColors.alabaster[50])
-  })
+      ? (setCurrentBgColor(backgroundColors.alabaster[200]),
+        setCurrentBorderRadius(borderRadius['3xl']))
+      : (setCurrentBgColor(backgroundColors.alabaster[50]),
+        setCurrentBorderRadius(borderRadius.md))
+  }, [location.pathname])
 
   // add in a theme changer button that changes it from a rainbow background to a mono color background
   return (
@@ -52,8 +59,11 @@ export default function Root() {
       {/* if on the player route this needs to transform into the player body, instead of the information body. */}
       <motion.div
         className={`flex flex-col bg-alabaster-50 w-screen max-w-2xl min-h-[600px] h-3/5 rounded-md shadow-md pt-16 pb-4 relative justify-between`}
-        animate={{ backgroundColor: currentBgColor }}
-        transition={{ type: 'spring', duration: 2 }}
+        animate={{
+          background: currentBgColor,          
+          borderRadius: currentBorderRadius,
+        }}
+        transition={{ type: 'spring', duration: 3 }}
       >
         <motion.div
           className={`w-full flex justify-center items-center space-x-4 absolute`}
