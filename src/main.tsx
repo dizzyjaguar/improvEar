@@ -10,6 +10,7 @@ import Donate from './routes/donate'
 import Help from './routes/help'
 import { ChakraProvider } from '@chakra-ui/react'
 import Contact from './routes/contact'
+import Player from './routes/player'
 
 const router = createBrowserRouter([
   {
@@ -38,20 +39,21 @@ const router = createBrowserRouter([
         path: '/contact',
         element: <Contact />,
       },
-    ],
-  },
-  {
-    path: 'player',
-    // error page should appear over the player/menu
-    children: [
       {
-        // note menu
-      },
-      {
-        // chord menu
-      },
-      {
-        // time menu
+        path: '/player',
+        element: <Player />,
+        // error page should appear over the player/menu
+        children: [
+          {
+            // note menu
+          },
+          {
+            // chord menu
+          },
+          {
+            // time menu
+          },
+        ],
       },
     ],
   },
