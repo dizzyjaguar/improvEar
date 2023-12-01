@@ -14,7 +14,7 @@ export default function Air() {
         transition: {
           type: 'spring',
           bounce: 0.6,
-          duration: 2
+          duration: 1
         },
       }}
       className={`hover:opacity-50`}
