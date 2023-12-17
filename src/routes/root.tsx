@@ -4,47 +4,27 @@ import Air from '../components/icons/Air'
 import Sun from '../components/icons/Sun'
 import Water from '../components/icons/Water'
 import { useEffect, useState } from 'react'
-import useWindowSize from '../hooks/useWindowSize.js'
-import { useBreakpoints } from '../hooks/useBreakpoints.js'
 import resolveConfig from 'tailwindcss/resolveConfig'
 // @ts-ignore
 import tailwindConfig from '../../tailwind.config.js'
+import { useIconLocations } from '../hooks/useIconLocations.js'
 
 export default function Root() {
+  const { groupX, groupY } = useIconLocations()
   const fullConfig = resolveConfig(tailwindConfig)
   const backgroundColors = fullConfig.theme.backgroundColor
-  // console.log(fullConfig.theme)
   const borderRadius = fullConfig.theme.borderRadius
-  console.log(borderRadius)
   let location = useLocation()
-  const [currentBgColor, setCurrentBgColor] = useState(
-    backgroundColors.alabaster[50]
-  )
+  const [currentBg, setCurrentBg] = useState(backgroundColors.alabaster[50])
   const [currentBorderRadius, setCurrentBorderRadius] = useState(
     borderRadius.md
   )
-  const [x, setX] = useState(0)
-  const [y, setY] = useState(0)
-  const [rotate, setRotate] = useState(0)
-  const windowSize = useWindowSize()
-  const { sm, md, lg, xl, xxl } = useBreakpoints()
-
-  // change icon location route change
-  useEffect(() => {
-    // if on landing page
-    if (!location.state) {
-      setX(0)
-      setY(145)
-    } else if (location.state.iconLocation === 'top left') {
-      windowSize.width >= md ? (setX(-250), setY(-40)) : (setX(0), setY(-40))
-    }
-  }, [location, windowSize])
 
   useEffect(() => {
     location.pathname === '/player'
-      ? (setCurrentBgColor(backgroundColors.alabaster[200]),
+      ? (setCurrentBg(backgroundColors.alabaster[200]),
         setCurrentBorderRadius(borderRadius['3xl']))
-      : (setCurrentBgColor(backgroundColors.alabaster[50]),
+      : (setCurrentBg(backgroundColors.alabaster[50]),
         setCurrentBorderRadius(borderRadius.md))
   }, [location.pathname])
 
@@ -60,7 +40,7 @@ export default function Root() {
       <motion.div
         className={`flex flex-col bg-alabaster-50 w-screen max-w-2xl min-h-[600px] h-3/5 rounded-md shadow-md pt-16 pb-4 relative justify-between`}
         animate={{
-          background: currentBgColor,          
+          background: currentBg,
           borderRadius: currentBorderRadius,
         }}
         transition={{ type: 'spring', duration: 3 }}
@@ -68,7 +48,7 @@ export default function Root() {
         <motion.div
           className={`w-full flex justify-center items-center space-x-4 absolute`}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, x, y, rotate }}
+          animate={{ opacity: 1, x: groupX, y: groupY }}
           transition={{ type: 'spring', duration: 1.5 }}
         >
           <Link to={'/'}>
