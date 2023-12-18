@@ -95,7 +95,17 @@ export default function Root() {
           </motion.div>
         </motion.div>
         <Outlet />
-        <div className={`flex flex-row justify-between px-8`}>
+        <motion.div
+          animate={
+            iconArrangement === 'separate'
+              ? {
+                  bottom: -50,
+                }
+              : {}
+          }
+          transition={{ type: 'spring', duration: 1.5 }}
+          className={`flex flex-row justify-between px-8 relative`}
+        >
           <div
             className={`flex flex-row justify-around space-x-4 md:space-x-12`}
           >
@@ -116,7 +126,7 @@ export default function Root() {
               <p className={`footer-link`}>Contact</p>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   )
