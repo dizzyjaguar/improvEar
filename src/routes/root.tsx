@@ -10,7 +10,17 @@ import tailwindConfig from '../../tailwind.config.js'
 import { useIconLocations } from '../hooks/useIconLocations.js'
 
 export default function Root() {
-  const { groupX, groupY } = useIconLocations()
+  const {
+    iconArrangement,
+    groupX,
+    groupY,
+    sunX,
+    sunY,
+    waterX,
+    waterY,
+    airX,
+    airY,
+  } = useIconLocations()
   const fullConfig = resolveConfig(tailwindConfig)
   const backgroundColors = fullConfig.theme.backgroundColor
   const borderRadius = fullConfig.theme.borderRadius
@@ -47,19 +57,60 @@ export default function Root() {
       >
         <motion.div
           className={`w-full flex justify-center items-center space-x-4 absolute`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, x: groupX, y: groupY }}
+          animate={
+            iconArrangement === 'grouped' && {
+              x: groupX,
+              y: groupY,
+            }
+          }
           transition={{ type: 'spring', duration: 1.5 }}
         >
-          <Link to={'/'}>
-            <Sun />
-          </Link>
-          <Link to={'/'}>
-            <Water />
-          </Link>
-          <Link to={'/'}>
-            <Air />
-          </Link>
+          <motion.div
+            animate={
+              iconArrangement === 'separate'
+                ? {
+                    x: sunX,
+                    y: sunY,
+                  }
+                : {}
+            }
+            transition={{ type: 'spring', duration: 1.5 }}
+          >
+            <Link to={'/'}>
+              <Sun />
+            </Link>
+          </motion.div>
+          <motion.div
+            animate={
+              iconArrangement === 'separate'
+                ? {
+                    x: waterX,
+                    y: waterY,
+                  }
+                : {}
+            }
+            transition={{ type: 'spring', duration: 1.5 }}
+          >
+            <Link to={'/'}>
+              <Water />
+            </Link>
+          </motion.div>
+          <motion.div
+            animate={
+              iconArrangement === 'separate'
+                ? {
+                    opacity: 1,
+                    x: airX,
+                    y: airY,
+                  }
+                : {}
+            }
+            transition={{ type: 'spring', duration: 1.5 }}
+          >
+            <Link to={'/'}>
+              <Air />
+            </Link>
+          </motion.div>
         </motion.div>
         <Outlet />
         <div className={`flex flex-row justify-between px-8`}>
