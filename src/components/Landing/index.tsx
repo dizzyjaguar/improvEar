@@ -29,7 +29,7 @@ export default function Landing() {
         <div className={`w-full flex justify-center items-center`}>
           <Button
             onClick={() =>
-              navigate('player', { state: { iconLocation: 'top left' } })
+              navigate('player', { state: { iconLocation: 'floating' } })
             }
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.99 }}
