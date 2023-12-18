@@ -47,6 +47,7 @@ export default function Root() {
           }
           transition={{ type: 'spring', duration: 1.5 }}
         >
+          {/* !!! could possibly change the icons to relative instead of absolute !!! */}
           <motion.div
             animate={
               iconArrangement === 'separate'
