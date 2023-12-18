@@ -1,13 +1,10 @@
 import { motion } from 'framer-motion'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import Air from '../components/icons/Air'
 import Sun from '../components/icons/Sun'
 import Water from '../components/icons/Water'
-import { useEffect, useState } from 'react'
-import resolveConfig from 'tailwindcss/resolveConfig'
-// @ts-ignore
-import tailwindConfig from '../../tailwind.config.js'
 import { useIconLocations } from '../hooks/useIconLocations.js'
+import { usePlayerStyle } from '../hooks/usePlayerStyle.js'
 
 export default function Root() {
   const {
@@ -21,22 +18,7 @@ export default function Root() {
     airX,
     airY,
   } = useIconLocations()
-  const fullConfig = resolveConfig(tailwindConfig)
-  const backgroundColors = fullConfig.theme.backgroundColor
-  const borderRadius = fullConfig.theme.borderRadius
-  let location = useLocation()
-  const [currentBg, setCurrentBg] = useState(backgroundColors.alabaster[50])
-  const [currentBorderRadius, setCurrentBorderRadius] = useState(
-    borderRadius.md
-  )
-
-  useEffect(() => {
-    location.pathname === '/player'
-      ? (setCurrentBg(backgroundColors.alabaster[200]),
-        setCurrentBorderRadius(borderRadius['3xl']))
-      : (setCurrentBg(backgroundColors.alabaster[50]),
-        setCurrentBorderRadius(borderRadius.md))
-  }, [location.pathname])
+  const { playerBg, playerBorderRadius } = usePlayerStyle()
 
   // add in a theme changer button that changes it from a rainbow background to a mono color background
   return (
@@ -50,8 +32,8 @@ export default function Root() {
       <motion.div
         className={`flex flex-col bg-alabaster-50 w-screen max-w-2xl min-h-[600px] h-3/5 rounded-md shadow-md pt-16 pb-4 relative justify-between`}
         animate={{
-          background: currentBg,
-          borderRadius: currentBorderRadius,
+          background: playerBg,
+          borderRadius: playerBorderRadius,
         }}
         transition={{ type: 'spring', duration: 3 }}
       >
