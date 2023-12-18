@@ -33,9 +33,19 @@ export const useIconLocations = () => {
     } else if (location.state.iconLocation === 'floating') {
       setIconArrangement('separate')
       // could just set each icon to a random plot within parameters thats not the box??
-      setSunX(-350), setSunY(-90)
-      setWaterX(390), setWaterY(90)
-      setAirX(-20), setAirY(-260)
+      windowSize.width >= lg
+        ? (setSunX(-350),
+          setSunY(-90),
+          setWaterX(390),
+          setWaterY(90),
+          setAirX(-20),
+          setAirY(-260))
+        : (setSunX(0),
+          setSunY(-250),
+          setWaterX(0),
+          setWaterY(-250),
+          setAirX(0),
+          setAirY(-250))
     }
   }, [location, windowSize])
 
