@@ -1,6 +1,6 @@
 # improvEar
 
-*An application designed to let the user listen to different scales over different chords*
+*Your friendly musical ear building tool*
 
 ## Getting Started
 
