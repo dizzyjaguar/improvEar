@@ -1,6 +1,6 @@
 import { Input, Textarea, VStack } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import MotionButton from '../components/Button'
+import MotionButton from '../components/Buttons/MotionButton'
 
 const visible = { opacity: 1, transition: { duration: 2.5 } }
 

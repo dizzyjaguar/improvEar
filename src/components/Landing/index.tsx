@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import Button from '../Button'
+import Button from '../Buttons/MotionButton'
 import { AnimatePresence, motion } from 'framer-motion'
 
 export default function Landing() {

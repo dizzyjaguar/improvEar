@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion'
 import Indicator from '../components/Indicator'
+import { Button } from '@chakra-ui/react'
+import Record from '../components/icons/Record'
+import RecordButton from '../components/Buttons/RecordButton'
 
 const visible = { opacity: 1, transition: { duration: 2 } }
 
@@ -13,7 +16,7 @@ export default function Player() {
     <>
       <motion.div
         className={`flex flex-col relative justify-between w-full h-full`}
-        variants={{ visible: { transition: { staggerChildren: .5 } } }}
+        variants={{ visible: { transition: { staggerChildren: 0.5 } } }}
         initial="hidden"
         animate="visible"
       >
@@ -32,7 +35,9 @@ export default function Player() {
           variants={itemVariants}
         ></motion.div>
         <div className={`flex flex-row justify-around`}>
-          <div className={`w-40 h-10 bg-black`}></div>
+          <div className={``}>
+            <RecordButton />
+          </div>
           <div className={`w-40 h-10 bg-black`}></div>
         </div>
       </motion.div>
