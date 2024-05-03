@@ -1,10 +1,14 @@
 # Contribution Guide
 
+## General Contribution Flow
+- Make a pull request into `main` and request a review 
+
 ## Branching
+- Branch off per feature/screen **example: chord-menu**
 
 ## Commits 
 - Should be coherent and not break code
-- Use descriptive but simple messages, reference previous commits
+- Use descriptive but simple messages, reference previous commits for examples
 - Commits should typically be atomic/small 
 ><sup>*"Working with atomic git commits means your commits are of the smallest possible size. Each commit does one, and only one simple thing, that can be summed up in a simple sentence.*</sup>"
 
