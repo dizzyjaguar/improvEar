@@ -4,6 +4,7 @@ import { Button } from '@chakra-ui/react'
 import Record from '../components/icons/Record'
 import RecordButton from '../components/Buttons/RecordButton'
 import PlayButton from '../components/Buttons/PlayButton'
+import PauseButton from '../components/Buttons/PauseButton'
 
 const visible = { opacity: 1, transition: { duration: 2 } }
 
@@ -41,6 +42,9 @@ export default function Player() {
           </div>
           <div className={''}>
             <PlayButton />
+          </div>
+          <div className={''}>
+            <PauseButton />
           </div>
           <div className={`w-40 h-10 bg-black`}></div>
         </div>
