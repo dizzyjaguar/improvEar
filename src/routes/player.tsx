@@ -4,7 +4,6 @@ import { Button } from '@chakra-ui/react'
 import Record from '../components/icons/Record'
 import RecordButton from '../components/Buttons/RecordButton'
 import PlayButton from '../components/Buttons/PlayButton'
-import PauseButton from '../components/Buttons/PauseButton'
 
 const visible = { opacity: 1, transition: { duration: 2 } }
 
@@ -36,15 +35,12 @@ export default function Player() {
           className={`w-60 h-60 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center`}
           variants={itemVariants}
         ></motion.div>
-        <div className={`flex flex-row justify-around`}>
-          <div className={``}>
+        <div className={`flex flex-row justify-center items-center`}>
+          <div className={`mr-4`}>
             <RecordButton />
           </div>
-          <div className={''}>
+          <div className={'mr-60'}>
             <PlayButton />
-          </div>
-          <div className={''}>
-            <PauseButton />
           </div>
           <div className={`w-40 h-10 bg-black`}></div>
         </div>
