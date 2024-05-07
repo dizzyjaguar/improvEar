@@ -35,11 +35,9 @@ export default function Player() {
           className={`w-60 h-60 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center`}
           variants={itemVariants}
         ></motion.div>
-        <div className={`flex flex-row justify-center items-center`}>
-          <div className={`mr-4`}>
+        <div className={`flex flex-row justify-between space-x-60 px-6`}>
+          <div className={`space-x-4`}>
             <RecordButton />
-          </div>
-          <div className={'mr-60'}>
             <PlayButton />
           </div>
           <div className={`w-40 h-10 bg-black`}></div>
