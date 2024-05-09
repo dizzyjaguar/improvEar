@@ -3,6 +3,7 @@ import Indicator from '../components/Indicator'
 import { Button } from '@chakra-ui/react'
 import Record from '../components/icons/Record'
 import RecordButton from '../components/Buttons/RecordButton'
+import PlayButton from '../components/Buttons/PlayButton'
 
 const visible = { opacity: 1, transition: { duration: 2 } }
 
@@ -37,6 +38,9 @@ export default function Player() {
         <div className={`flex flex-row justify-around`}>
           <div className={``}>
             <RecordButton />
+          </div>
+          <div className={''}>
+            <PlayButton />
           </div>
           <div className={`w-40 h-10 bg-black`}></div>
         </div>
