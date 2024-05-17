@@ -6,10 +6,10 @@ export default function Pause() {
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
-      viewBox="0 0 18 22"
+      viewBox="0 0 22 22"
       fill="none"
     >
-      <rect width="24" height="24" rx="2" fill="black" />
+      <rect width="22" height="22" rx="2" ry="2" fill="black" />
     </motion.svg>
   )
 }
