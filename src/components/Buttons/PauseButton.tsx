@@ -3,12 +3,13 @@ import Pause from '../icons/Pause'
 
 export default function PauseButton(onClick: any) {
   return (
-    <motion.button
+    <button
       className={`hover:opacity-50 border-[1px] border-black p-3 rounded`}
-      whileHover={{ scale: 1.2 }}
       onClick={onClick}
     >
-      <Pause />
-    </motion.button>
+      <motion.div whileHover={{ scale: 1.4 }}>
+        <Pause />
+      </motion.div>
+    </button>
   )
 }
