@@ -6,6 +6,7 @@ import RecordButton from '../components/Buttons/RecordButton'
 import PlayButton from '../components/Buttons/PlayButton'
 import PauseButton from '../components/Buttons/PauseButton'
 
+
 const visible = { opacity: 1, transition: { duration: 2 } }
 
 const itemVariants = {
