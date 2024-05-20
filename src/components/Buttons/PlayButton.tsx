@@ -7,7 +7,7 @@ export default function PlayButton(onClick: any) {
       className={`hover:opacity-50 border-[1px] border-black p-3 rounded`}
       onClick={onClick}
     >
-      <motion.div whileHover={{x: 4 }}>
+      <motion.div whileHover={{ scale: 1.4, x: 6 }}>
         <Play />
       </motion.div>
     </button>
