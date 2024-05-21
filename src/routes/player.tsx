@@ -5,6 +5,11 @@ import Record from '../components/icons/Record'
 import RecordButton from '../components/Buttons/RecordButton'
 import PlayButton from '../components/Buttons/PlayButton'
 import PauseButton from '../components/Buttons/PauseButton'
+import TapeSpinner from '../components/TapeSpinner'
+import VolumeSlider from '../components/VolumeSlider'
+import VisualizerUI from '../components/VisualizerUI'
+import { useState } from 'react'
+
 const visible = { opacity: 1, transition: { duration: 2 } }
 
 const itemVariants = {
@@ -13,6 +18,8 @@ const itemVariants = {
 }
 
 export default function Player() {
+  const [volume, setVolume] = useState(30)
+
   return (
     <>
       <motion.div
@@ -32,16 +39,30 @@ export default function Player() {
         </motion.div>
         {/* spinner */}
         <motion.div
-          className={`w-60 h-60 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center`}
+          className={`w-72 h-72 md:w-64 md:h-64 lg:w-72 lg:h-72 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center flex justify-center items-center`}
           variants={itemVariants}
-        ></motion.div>
+        >
+          <TapeSpinner />
+        </motion.div>
+        {/* buttons */}
         <div className={`flex flex-row justify-between space-x-60 px-6`}>
           <div className={`space-x-4`}>
             <RecordButton />
             <PlayButton />
             <PauseButton />
           </div>
-          <div className={`w-40 h-10 bg-black`}></div>
+          {/* sliders */}
+          <div className={`absolute bottom-0 right-8 -mb-8 mr-4 flex`}>
+            <div style={{ flex: 1 }}>
+              <div style={{ marginRight: '8px' }}>
+                <VisualizerUI volume={volume} />
+              </div>
+            </div>
+
+            <div style={{ flex: 1 }}>
+              <VolumeSlider volume={volume} setVolume={setVolume} />
+            </div>
+          </div>
         </div>
       </motion.div>
     </>
