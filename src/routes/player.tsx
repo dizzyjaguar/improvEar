@@ -5,6 +5,8 @@ import Record from '../components/icons/Record'
 import RecordButton from '../components/Buttons/RecordButton'
 import PlayButton from '../components/Buttons/PlayButton'
 import PauseButton from '../components/Buttons/PauseButton'
+import TapeSpinner from '../components/TapeSpinner'
+
 const visible = { opacity: 1, transition: { duration: 2 } }
 
 const itemVariants = {
@@ -32,9 +34,9 @@ export default function Player() {
         </motion.div>
         {/* spinner */}
         <motion.div
-          className={`w-60 h-60 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center`}
+          className={`w-72 h-72 md:w-64 md:h-64 lg:w-72 lg:h-72 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center flex justify-center items-center`}
           variants={itemVariants}
-        ></motion.div>
+        ><TapeSpinner /></motion.div>
         <div className={`flex flex-row justify-between space-x-60 px-6`}>
           <div className={`space-x-4`}>
             <RecordButton />
