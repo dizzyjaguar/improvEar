@@ -6,6 +6,7 @@ import RecordButton from '../components/Buttons/RecordButton'
 import PlayButton from '../components/Buttons/PlayButton'
 import PauseButton from '../components/Buttons/PauseButton'
 import TapeSpinner from '../components/TapeSpinner'
+import VolumeSlider from '../components/VolumeSlider'
 
 const visible = { opacity: 1, transition: { duration: 2 } }
 
@@ -37,13 +38,17 @@ export default function Player() {
           className={`w-72 h-72 md:w-64 md:h-64 lg:w-72 lg:h-72 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center flex justify-center items-center`}
           variants={itemVariants}
         ><TapeSpinner /></motion.div>
+        {/* buttons */}
         <div className={`flex flex-row justify-between space-x-60 px-6`}>
           <div className={`space-x-4`}>
             <RecordButton />
             <PlayButton />
             <PauseButton />
           </div>
-          <div className={`w-40 h-10 bg-black`}></div>
+          {/* sliders */}
+          <div className={`absolute bottom-0 right-4 -mb-4 mr-4`}>
+            <VolumeSlider />
+          </div>
         </div>
       </motion.div>
     </>
