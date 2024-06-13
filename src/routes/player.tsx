@@ -39,7 +39,7 @@ export default function Player() {
         </motion.div>
         {/* spinner */}
         <motion.div
-          className={`w-72 h-72 md:w-64 md:h-64 lg:w-72 lg:h-72 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center flex justify-center items-center`}
+          className={`w-48 h-48 md:w-72 md:h-72 lg:w-72 lg:h-72 bg-alabaster-100 border-[1px] border-black shadow-md rounded-full self-center flex justify-center items-center`}
           variants={itemVariants}
         >
           <TapeSpinner />
