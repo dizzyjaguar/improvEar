@@ -45,14 +45,18 @@ export default function Player() {
           <TapeSpinner />
         </motion.div>
         {/* buttons */}
-        <div className={`flex flex-row justify-between space-x-60 px-6`}>
-          <div className={`space-x-4`}>
+        <div
+          className={`flex flex-row justify-between sm:space-x-60 px-4 sm:px-6`}
+        >
+          <div className={`space-x-2 sm:space-x-4`}>
             <RecordButton />
             <PlayButton />
             <PauseButton />
           </div>
           {/* sliders */}
-          <div className={`absolute bottom-0 right-8 -mb-8 mr-4 flex`}>
+          <div
+            className={`absolute bottom-0 right-0 -mb-12 md:right-6 md:-mb-8 lg:right-8 lg:-mb-8 mr-4 flex`}
+          >
             <div style={{ flex: 1 }}>
               <div style={{ marginRight: '8px' }}>
                 <VisualizerUI volume={volume} />
