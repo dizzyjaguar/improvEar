@@ -30,7 +30,7 @@ export default function Player() {
       >
         {/* quick menus */}
         <motion.div
-          className={`px-8 flex flex-row justify-around `}
+          className={`flex flex-row justify-evenly justify-around md:justify-evenly md:px-14 lg:justify-around lg:px-12`}
           variants={itemVariants}
         >
           <Indicator variant="note" settingOne="C" settingTwo="major" />
