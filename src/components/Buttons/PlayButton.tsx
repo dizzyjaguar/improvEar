@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Play from '../icons/Play'
 import { useState } from 'react'
 
-export default function PlayButton(onClick: any) {
+export default function PlayButton({ onClick }: { onClick: any }) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
