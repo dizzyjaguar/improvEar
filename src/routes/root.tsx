@@ -30,7 +30,7 @@ export default function Root() {
       */}
       {/* if on the player route this needs to transform into the player body, instead of the information body. */}
       <motion.div
-        className={`flex flex-col bg-alabaster-50 w-screen max-w-2xl min-h-[600px] h-3/5 rounded-md shadow-md pt-10 pb-4 relative justify-between`}
+        className={`flex flex-col bg-alabaster-50 w-screen max-w-2xl min-h-[600px] h-3/5 rounded-md shadow-md pt-16 pb-4 relative justify-between`}
         animate={{
           background: playerBg,
           borderRadius: playerBorderRadius,
